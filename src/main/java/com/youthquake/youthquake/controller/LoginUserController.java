@@ -24,7 +24,7 @@ public class LoginUserController {
 	
 	@PostMapping("/Login")
 	public String loginUserRedirect(@ModelAttribute UsuarioModel user) {
-		if(seguranca.acessUser(user)){
+		if(seguranca.permitirAcesso(user)){
 			return "DashboardView";
 		}else{
 			return "LoginView";
@@ -33,7 +33,7 @@ public class LoginUserController {
 		
 	@GetMapping("/Login")
 	public String viewLogin(Model model) {
-		model.addAttribute("user",new UsuarioModel());
+		model.addAttribute("user", new UsuarioModel());
 		return "LoginView";
 	}
 }
