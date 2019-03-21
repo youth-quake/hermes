@@ -25,20 +25,18 @@
                 <input type="password" th:field="*{senha}" placeholder="Senha" id="senha" />
                 <!--  <input type="submit" value="Entrar" />-->
                 <button id="btnLogar" value="btnLogar" type="submit">Sign-in</button>
+                
             </form>
             <p>Ainda não possui um cadastro? <a href="Cadastro">Cadastre-se agora</a></p>
         </div>
     </div>
-    <div style="display: block;">
-	    <div class="message-box" id="modal">
-	    	<div class="message-wrapper">
-	    		<div class="message">
-	    			<h2>Title</h2>
-	    			<p>Text</p>
-	    			<button>Ok</button>
-	    		</div>
-	    	</div>
-	    </div>
-    </div>
+    
+    <!-- FUNÇÃO PARA REMOVER O FOCUS NOS INPUT'S :) -->
+    <script>
+    	$(function () {
+        	$('input').blur();
+    	}); 
+    </script>
+   
 </body>
 </html>

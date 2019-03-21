@@ -247,6 +247,11 @@ button:hover{
     transition: width 2s;
 }
 
+img{
+	width: 80px;
+	height: 80px;
+}
+
 .message-wrapper {
     display: flex;
     justify-content: center;

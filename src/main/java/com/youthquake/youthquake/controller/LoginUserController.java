@@ -27,7 +27,7 @@ public class LoginUserController {
 		if(seguranca.permitirAcesso(user)){
 			return "DashboardView";
 		}else{
-			return "LoginView";
+			return "modals/ErrorLoginModal";
 		}
 	}
 		
