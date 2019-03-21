@@ -1,272 +1,176 @@
-*{
-    padding: 0px;
-    margin: 0px;
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Roboto';
 }
 
-h1{
-    font-family: 'Roboto';
-    font-size: 30px;
-    font-weight: bold;
+.wrapper {
+	display: flex;
 }
 
-p{
-    font-family: 'Roboto';
-    font-size: 14px;
-    font-style: normal;
-    margin-top: 17%;
-    text-align: center;
+.information {
+	font-size: 20px;
+	font-style: normal;
+	text-align: left;
 }
 
-
- body{
-     display: grid;
-} 
-
-input{ 
-    border-top:none;
-    border-left: none;
-    border-right: none;
-    border-bottom: solid 1px #F4F4F4;
-    display: block;
-    margin-top: 25px;
-    border-style: solid 1px;
-
-    border-color: lightgray;
-    width: 95%;
-    font-family: 'roboto';
-    font-size: 14px;
-    padding: 7px;
+label {
+	font-size: 14px;
+	font-style: normal;
+	float: right;
 }
 
-label{
-    font-family: 'Roboto';
-    font-size: 14px;
-    font-style: normal;
-    float: right;
+a {
+	text-decoration: none;
 }
 
-.input:focus{
-    outline: medium;
+.recLeft {
+	display: flex;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	height: 100% !important;
 }
 
-a{
-    text-decoration: none;
+.loginDescr {
+	width: 350px;
+	height: auto;
+	padding: 5px 5px 5px 5px;
 }
 
-button{
-    border-radius: 20px;
-    font-family: 'Roboto';
-    background-color:#0079C2;
-    border: none; 
-    color: white;
-    font-size: 14px;
-    float: right;
-    margin-top: 15px; 
-    height: 35px;
-    width: 75px;
-    cursor: pointer;    
+.formLogin {
+	position: relative;
+	width: 360px;
+	height: 400px;
 }
 
-button:hover{
-    background-color: #472F91;
-    transition: all 0.5s;     
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+	margin: 10px 0;
 }
 
-.recLeft{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    margin-left: 60%;
-    height: 100%;
-    float: right;
+.link {
+	margin: 10% 0;
+	font-size: 14px;
 }
 
-.loginDescr{
-    width: 350px;
-    height: auto;
-    padding: 5px 5px 5px 5px;
+input {
+	border: none;
+	border-bottom: solid 1px #CCCCCC;
+	display: block;
+	margin-top: 25px;
+	width: 95%;
+	font-size: 14px;
+	padding: 7px;
+	outline: none;
 }
 
-.formLogin{
-    position: relative;
-    width: 360px;
-    height: 400px;
+label {
+	font-size: 14px;
+	font-style: normal;
+	float: right;
 }
 
-.recRight {
-    position: absolute;
-    width: calc(100% - 40%);
-    height: 100%;
-    /* margin-left: 40%; */
-    background-color: #472F91;
-    color: white;
+a {
+	text-decoration: none;
 }
 
-.recRight h1{
-    font-family: 'Lalezar', cursive;
-    font-size: 40px;
-    font-weight: bold;
-    margin-left: 20px;
-    margin-top: 20px;
+button {
+	border-radius: 4px;
+	background-color: #0079C2;
+	border: none;
+	color: white;
+	font-size: 14px;
+	height: 35px;
+	width: 96%;
+	cursor: pointer;
+	margin-top: 20px;
 }
 
-*{
-    padding: 0px;
-    margin: 0px;
+button:hover {
+	background-color: #472F91;
+	transition: all 0.5s;
 }
 
-h1{
-    font-family: 'Roboto';
-    font-size: 30px;
-    font-weight: bold;
+.loginDescr {
+	width: 350px;
+	height: auto;
+	padding: 5px 5px 5px 5px;
 }
 
-p{
-    font-family: 'Roboto';
-    font-size: 14px;
-    font-style: normal;
-    margin-top: 17%;
-    text-align: center;
-}
-
-
- body{
-     display: grid;
-} 
-
-input{ 
-    border-top:none;
-    border-left: none;
-    border-right: none;
-    border-bottom: solid 1px #F4F4F4;
-    display: block;
-    margin-top: 25px;
-    border-style: solid 1px;
-
-    border-color: lightgray;
-    width: 95%;
-    font-family: 'roboto';
-    font-size: 14px;
-    padding: 7px;
-}
-
-label{
-    font-family: 'Roboto';
-    font-size: 14px;
-    font-style: normal;
-    float: right;
-}
-
-.input:focus{
-    outline: medium;
-}
-
-a{
-    text-decoration: none;
-}
-
-button{
-    border-radius: 20px;
-    font-family: 'Roboto';
-    background-color:#0079C2;
-    border: none; 
-    color: white;
-    font-size: 14px;
-    float: right;
-    margin-top: 15px; 
-    height: 35px;
-    width: 75px;
-    cursor: pointer;    
-}
-
-button:hover{
-    background-color: #472F91;
-    transition: all 0.5s;     
-}
-
-.recLeft{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    margin-left: 60%;
-    height: 100%;
-    float: right;
-}
-
-.loginDescr{
-    width: 350px;
-    height: auto;
-    padding: 5px 5px 5px 5px;
-}
-
-.formLogin{
-    position: relative;
-    width: 360px;
-    height: 400px;
+.formLogin {
+	position: relative;
+	width: 360px;
+	height: 400px;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .recRight {
-    position: absolute;
-    width: calc(100% - 40%);
-    height: 100%;
-    /* margin-left: 40%; */
-    background-color: #472F91;
-    color: white;
+	background-color: #472F91;
+	color: white;
+	padding: 30px;
+	width: 50%;
+	height: 100% !important;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#472f91+1,2989d8+91,0079c2+100 */
+	background: #472f91; /* Old browsers */
+	background: -moz-linear-gradient(top, #472f91 1%, #2989d8 91%, #0079c2 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #472f91 1%, #2989d8 91%, #0079c2 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #472f91 1%, #2989d8 91%, #0079c2 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#472f91',
+		endColorstr='#0079c2', GradientType=0); /* IE6-9 */
 }
 
-.recRight h1{
-    font-family: 'Lalezar', cursive;
-    font-size: 40px;
-    font-weight: bold;
-    margin-left: 20px;
-    margin-top: 20px;
-}
-
-.message-box{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    top: 0;
-    left: 0;
-    transition: width 2s;
+p {
+	margin-top: 5%;
+	clear: both;
 }
 
 .message-box {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    text-align: center;
-    top: 0;
-    left: 0;
-    transition: width 2s;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	transition: width 2s;
 }
 
-img{
+.message-box {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	text-align: center;
+	top: 0;
+	left: 0;
+	transition: width 2s;
+}
+
+img {
 	width: 80px;
 	height: 80px;
 }
 
 .message-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    width: 40%;
-    align-items: center;
-    margin: 10vh auto;
-    background-color: #fff;
-    color: #292929;
-    padding: 50px 0;
-    border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+	width: 40%;
+	align-items: center;
+	margin: 10vh auto;
+	background-color: #fff;
+	color: #292929;
+	padding: 50px 0;
+	border-radius: 5px;
 }
 
 .message {
-    padding: 10vh 5vh;
+	padding: 10vh 5vh;
 }
-
-

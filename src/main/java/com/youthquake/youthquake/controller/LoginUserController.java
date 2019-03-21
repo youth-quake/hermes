@@ -1,5 +1,7 @@
 package com.youthquake.youthquake.controller;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +25,9 @@ public class LoginUserController {
 	}
 	
 	@PostMapping("/Login")
-	public String loginUserRedirect(@ModelAttribute UsuarioModel user) {
+	public String loginUserRedirect(@ModelAttribute UsuarioModel user) throws IOException {
 		if(seguranca.permitirAcesso(user)){
+			HistoricalAcess.writeAccess(user);
 			return "DashboardView";
 		}else{
 			return "modals/ErrorLoginModal";

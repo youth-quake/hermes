@@ -15,7 +15,7 @@ public class DashboardController {
 	
 	
 	@PostMapping("/Dashboard")
-	public String recDash(){
+	public String recDash(@ModelAttribute UsuarioModel user){
 		return "DashboardView";
 	}
 	
