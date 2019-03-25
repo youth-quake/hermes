@@ -28,7 +28,7 @@ public class LoginUserController {
 	public String loginUserRedirect(@ModelAttribute UsuarioModel user) throws IOException {
 		if(seguranca.permitirAcesso(user)){
 			HistoricalAcess.writeAccess(user);
-			return "DashboardView";
+			return "redirect:/Dashboard";
 		}else{
 			return "modals/ErrorLoginModal";
 		}

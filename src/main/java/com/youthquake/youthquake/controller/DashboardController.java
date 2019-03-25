@@ -13,15 +13,8 @@ import com.youthquake.youthquake.model.UsuarioModel;
 @Controller
 public class DashboardController {
 	
-	
-	@PostMapping("/Dashboard")
-	public String recDash(@ModelAttribute UsuarioModel user){
-		return "DashboardView";
-	}
-	
-	@GetMapping("/Dashboard")
-	public String viewDash(Model model) {
-		model.addAttribute("user", new UsuarioModel());
+	@RequestMapping("/Dashboard")
+	public String viewDash() {
 		return "DashboardView";
 	}
 }
