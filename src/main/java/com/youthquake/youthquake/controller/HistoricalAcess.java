@@ -22,7 +22,7 @@ public class HistoricalAcess {
 
 	public static void writeAccess(UsuarioModel user) throws IOException {
 
-		FileWriter fileWriter = new FileWriter("C:\\Users\\pazth\\Desktop\\youth-quake\\hermes\\src\\historico.txt");
+		FileWriter fileWriter = new FileWriter("historico.txt");
 		PrintWriter printWriter = new PrintWriter(fileWriter);
 
 		String[][] titles = new String[3][2];
