@@ -1,4 +1,4 @@
-package com.youthquake.youthquake;
+package br.com.youthquake;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,4 +9,5 @@ public class YouthquakeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(YouthquakeApplication.class, args);
 	}
+
 }

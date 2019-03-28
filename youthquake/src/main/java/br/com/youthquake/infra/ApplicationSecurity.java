@@ -1,18 +1,18 @@
-package com.youthquake.youthquake.infra;
+package br.com.youthquake.infra;
 
 import org.springframework.stereotype.Component;
 
-import com.youthquake.youthquake.model.UsuarioModel;
+import br.com.youthquake.model.User;
 
 @Component
-public class Seguranca {
+public class ApplicationSecurity {
 	
-	public boolean acessUser(UsuarioModel usuario){
-		if((usuario.getLogin().equals(usuario.getSenha()))) return true;
+	public boolean verifyUser(User usuario){
+		if((usuario.getLogin().equals(usuario.getPassword()))) return true;
 		return false;
 	}
 	
-	public boolean permitirAcesso(UsuarioModel user) {
+	public boolean allowsAcess(User user) {
 		String loginUser[][]  = new String[3][2];
 		
 		loginUser[0][0] = "Giu";
@@ -27,10 +27,10 @@ public class Seguranca {
 		
 		for(int linha = 0; linha < loginUser.length; linha++) {
 				if(user.getLogin().equals(loginUser[linha][0]) && 
-				   user.getSenha().equals(loginUser[linha][1])) {
+				   user.getPassword().equals(loginUser[linha][1])) {
 				return true;					
 			}
 		}
 			return false;			
 	 }	
- }
+}
