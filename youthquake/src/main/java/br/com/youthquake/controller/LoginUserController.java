@@ -23,7 +23,7 @@ public class LoginUserController {
 	}
 	
 	@PostMapping("/Login")
-	public String loginUserRedirect(@ModelAttribute User user) {
+	public String loginUserRedirect(@ModelAttribute User  user) {
 		if(applicationSecurity.verifyUser(user)){
 			return "DashboardView";
 		}else{
