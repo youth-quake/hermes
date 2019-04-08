@@ -1,0 +1,176 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Roboto';
+}
+
+.wrapper {
+	display: flex;
+}
+
+.information {
+	font-size: 20px;
+	font-style: normal;
+	text-align: left;
+}
+
+label {
+	font-size: 14px;
+	font-style: normal;
+	float: right;
+}
+
+a {
+	text-decoration: none;
+}
+
+.recLeft {
+	display: flex;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	height: 100% !important;
+}
+
+.loginDescr {
+	width: 350px;
+	height: auto;
+	padding: 5px 5px 5px 5px;
+}
+
+.formLogin {
+	position: relative;
+	width: 360px;
+	height: 400px;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+.link {
+	margin: 10% 0;
+	font-size: 14px;
+}
+
+input {
+	border: none;
+	border-bottom: solid 1px #CCCCCC;
+	display: block;
+	margin-top: 25px;
+	width: 95%;
+	font-size: 14px;
+	padding: 7px;
+	outline: none;
+}
+
+label {
+	font-size: 14px;
+	font-style: normal;
+	float: right;
+}
+
+a {
+	text-decoration: none;
+}
+
+button {
+	border-radius: 4px;
+	background-color: #0079C2;
+	border: none;
+	color: white;
+	font-size: 14px;
+	height: 35px;
+	width: 96%;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+button:hover {
+	background-color: #472F91;
+	transition: all 0.5s;
+}
+
+.loginDescr {
+	width: 350px;
+	height: auto;
+	padding: 5px 5px 5px 5px;
+}
+
+.formLogin {
+	position: relative;
+	width: 360px;
+	height: 400px;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.recRight {
+	background-color: #472F91;
+	color: white;
+	padding: 30px;
+	width: 50%;
+	height: 100% !important;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#472f91+1,2989d8+91,0079c2+100 */
+	background: #472f91; /* Old browsers */
+	background: -moz-linear-gradient(top, #472f91 1%, #2989d8 91%, #0079c2 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #472f91 1%, #2989d8 91%, #0079c2 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #472f91 1%, #2989d8 91%, #0079c2 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#472f91',
+		endColorstr='#0079c2', GradientType=0); /* IE6-9 */
+}
+
+p {
+	margin-top: 5%;
+	clear: both;
+}
+
+.message-box {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	transition: width 2s;
+}
+
+.message-box {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	text-align: center;
+	top: 0;
+	left: 0;
+	transition: width 2s;
+}
+
+img {
+	width: 80px;
+	height: 80px;
+}
+
+.message-wrapper {
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+	width: 40%;
+	align-items: center;
+	margin: 10vh auto;
+	background-color: #fff;
+	color: #292929;
+	padding: 50px 0;
+	border-radius: 5px;
+}
+
+.message {
+	padding: 10vh 5vh;
+}
