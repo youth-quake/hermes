@@ -48,7 +48,7 @@ public class LoginUserController {
 		return ResponseEntity.created(location).body(response);
 	}
 
-	@GetMapping
+	@GetMapping("/aa")
 	public ResponseEntity<List<User>> listar() {
 		List<User> users = null;
 		users = userService.getAll();

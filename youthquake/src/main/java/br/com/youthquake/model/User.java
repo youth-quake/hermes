@@ -26,11 +26,11 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@JsonSerialize(using = DateSerializer.class)
+	
 	@Column(name = "login_user", nullable = false)
 	private String login;
 
-	@JsonSerialize(using = DateSerializer.class)
+	
 	@Column(name = "password_user", nullable = false)
 	private String password;
 
@@ -52,7 +52,7 @@ public class User implements Serializable {
 		this.id = id;
 	}
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	
 	public String getLogin() {
 		return login;
 	}
@@ -61,7 +61,6 @@ public class User implements Serializable {
 		this.login = login;
 	}
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	public String getPassword() {
 		return password;
 	}
