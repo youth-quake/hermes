@@ -32,5 +32,37 @@
 			</div>
 		</div>
 	</div>
+	<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+  
+
+<script>
+
+window.onload = function (){
+	
+	var sendInfo = {
+	           login: "asasa",
+	           password: "aasasads"
+	       };
+
+$.ajax({
+type: 'POST',
+dataType: 'json',
+headers: {
+'Content-Type': 'application/json'
+},
+url: "http://localhost:8080/api/login/cadastrar",
+data: JSON.stringify(sendInfo),
+success: function (response) {
+    console.log(response);
+},
+error: function () {
+    console.log("Deu errado");
+}
+});
+}
+</script>
 </body>
 </html>

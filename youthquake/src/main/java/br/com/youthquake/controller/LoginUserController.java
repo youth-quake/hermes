@@ -30,11 +30,12 @@ public class LoginUserController {
 
 	// Teste API
 
-	@PostMapping(path = "/Login")
+	@PostMapping(path = "/cadastrar")
 	public ResponseEntity<Response<User>> cadastrar(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();
-
+		
+		
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
@@ -47,8 +48,9 @@ public class LoginUserController {
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
 	}
+	
 
-	@GetMapping("/aa")
+	@GetMapping("/listar")
 	public ResponseEntity<List<User>> listar() {
 		List<User> users = null;
 		users = userService.getAll();
