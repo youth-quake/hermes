@@ -9,7 +9,10 @@ public class UserDTO implements Serializable {
 	private long id;
 	private String login;
 	private String password;
-
+	private String email;
+	private String telephone;
+	
+	
 	public UserDTO() {}
 
 	public long getId() {
@@ -35,10 +38,27 @@ public class UserDTO implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + "]";
+		return "UserDTO [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", telephone="
+				+ telephone + "]";
 	}
 }
 	

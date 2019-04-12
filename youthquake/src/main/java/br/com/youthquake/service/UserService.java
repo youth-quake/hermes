@@ -20,10 +20,12 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	public User include(UserDTO dto){
+	public User userInclude(UserDTO dto){
 		User user = new User();
 		user.setLogin(dto.getLogin());
 		user.setPassword(dto.getPassword());
+		user.setEmail(dto.getEmail());
+		user.setTelephone(dto.getTelephone());
 		return userRepository.save(user);
 	}
 	

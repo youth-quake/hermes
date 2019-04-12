@@ -18,17 +18,15 @@
 			<div class="formLogin">
 				<h1>Registre-se</h1>
 				<br />
-				<form action="#">
-					<input type="text" placeholder="Insira seu Username"> <input
-						type="text" placeholder="Insira seu E-mail"> <input
-						type="text" placeholder="Insira seu Telefone"> <input
-						type="password" placeholder="Insira sua Senha"> <input
-						type="password" placeholder="Repita sua Senha">
-					<button id="btnCadastrar" value="btnCadastrar">Register</button>
+					<input type="text" placeholder="Insira seu Username" id="txtUser"> <input
+						type="text" placeholder="Insira seu E-mail" id="txtEmail"> <input
+						type="text" placeholder="Insira seu Telefone" id="txtTelefone"> <input
+						type="password" placeholder="Insira sua Senha" id="txtSenha"> <input
+						type="password" placeholder="Repita sua Senha" id="txtRepeatSenha">
+					<button id="btnCadastrar" type="submit" value="btnCadastrar" onclick="testeRest()">Register</button>
 					<p>
 						Já possui uma conta? <a href="Login">Acesse agora</a>
 					</p>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -40,11 +38,18 @@
 
 <script>
 
-window.onload = function (){
-	
+function testeRest (){
+	var txtUser = document.getElementById("txtUser").value;
+	var txtEmail = document.getElementById("txtEmail").value;
+	var txtTelefone = document.getElementById("txtTelefone").value;
+	var txtSenha = document.getElementById("txtSenha").value;
+
+    
 	var sendInfo = {
-	           login: "asasa",
-	           password: "aasasads"
+	           login: txtUser,
+	           password: txtSenha,
+               telephone: txtTelefone,
+               email: txtEmail
 	       };
 
 $.ajax({
@@ -53,7 +58,7 @@ dataType: 'json',
 headers: {
 'Content-Type': 'application/json'
 },
-url: "http://localhost:8080/api/login/cadastrar",
+url: "http://localhost:8080/Api/IncludeUser/Include",
 data: JSON.stringify(sendInfo),
 success: function (response) {
     console.log(response);
