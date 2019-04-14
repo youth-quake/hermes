@@ -1,12 +1,18 @@
 package br.com.youthquake.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -24,39 +30,50 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@Column(name = "id_user")
+	private long idUser;
 	
-	@Column(name = "login_user", nullable = false)
+	@Column(name = "login")
 	private String login;
 
-	@Column(name = "password_user", nullable = false)
+	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "email_user", nullable = false)
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "telephone_user", nullable = false)
+	@Column(name = "telephone")
 	private String telephone;
 	
+	@OneToOne
+	@JoinColumn(name="id_picture")
+	private Picture picture;
+	
+	@OneToMany
+	private List<Movements> movements = new ArrayList<>(); 
+	
+	@OneToMany
+	private List<Couple> couples = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "users")
+	private List<Goal> goals = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "users")
+	private List<AchievementUser> AchievementUsers = new ArrayList<>();
+	
+	
+	//Constructors
 	public User() {}
+	
+	//Getters and Setters
+	public long getIdUser() {
+		return idUser;
+	}
 
-	public User(long id, String login, String password, String email, String telephone) {
-		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.email = email;
-		this.telephone = telephone;
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
 	}
-	
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -72,7 +89,7 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -85,14 +102,16 @@ public class User implements Serializable {
 		return telephone;
 	}
 
-	public void setTelephone(String telefone) {
-		this.telephone = telefone;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", telefone="
-				+ telephone + "]";
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
 	}
 	
 	
