@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,11 +25,12 @@ import br.com.youthquake.service.UserService;
 @RestController
 @RequestMapping("/Api/IncludeUser")
 public class RegisterUserRestController {
-
+	
+	
 	@Autowired
 	private UserService userService;
 
-
+	@CrossOrigin
 	@PostMapping(path = "/Include")
 	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
@@ -46,7 +48,8 @@ public class RegisterUserRestController {
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-
+	
+	@CrossOrigin
 	@GetMapping("/GetAll")
 	public ResponseEntity<List<User>> getAllUserJSON() {
 		List<User> users = null;
