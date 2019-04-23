@@ -1,4 +1,4 @@
-package com.youthquake.youthquake;
+package br.com.youthquake;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

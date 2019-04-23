@@ -25,47 +25,53 @@ import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 @Component
 @Table(name = "tbl_user")
 public class User implements Serializable {
-
-	private static final long serialVersionUID = -6888542263201514002L;
 	
+	// Constructors
+	public User() {}
+
+	public User(String login, String password, String email, String telephone) {
+		this.login = login;
+		this.password = password;
+		this.email = email;
+		this.telephone = telephone;
+	}
+	
+	private static final long serialVersionUID = -6888542263201514002L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_user")
 	private long idUser;
-	
+
 	@Column(name = "login")
 	private String login;
 
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "telephone")
 	private String telephone;
-	
+
 	@OneToOne
-	@JoinColumn(name="id_picture")
+	@JoinColumn(name = "id_picture")
 	private Picture picture;
-	
+
 	@OneToMany
-	private List<Movements> movements = new ArrayList<>(); 
-	
+	private List<Movements> movements = new ArrayList<>();
+
 	@OneToMany
 	private List<Couple> couples = new ArrayList<>();
-	
+
 	@ManyToMany(mappedBy = "users")
 	private List<Goal> goals = new ArrayList<>();
-	
+
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers = new ArrayList<>();
-	
-	
-	//Constructors
-	public User() {}
-	
-	//Getters and Setters
+
+	// Getters and Setters
 	public long getIdUser() {
 		return idUser;
 	}
@@ -113,6 +119,5 @@ public class User implements Serializable {
 	public void setPicture(Picture picture) {
 		this.picture = picture;
 	}
-	
-	
+
 }
