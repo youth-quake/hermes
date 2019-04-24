@@ -34,4 +34,9 @@ public class UserPersistenceTest {
 		User userPersist = allUsers.getOne(user.getIdUser());
 		assertEquals(user, userPersist);
 	}
+	
+	@Test
+	public void findLoginAndPassword() {
+		user = allUsers.findFirstByLoginAndPassword("Thiago", "123");
+	}
 }
