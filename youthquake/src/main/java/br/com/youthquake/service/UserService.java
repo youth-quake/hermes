@@ -1,7 +1,6 @@
 package br.com.youthquake.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +14,12 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	public List<User> getAll(){
+
+	public List<User> getAll() {
 		return userRepository.findAll();
 	}
-	
-	public User userInclude(UserDTO dto){
+
+	public User userInclude(UserDTO dto) {
 		User user = new User();
 		user.setLogin(dto.getLogin());
 		user.setPassword(dto.getPassword());
@@ -28,11 +27,13 @@ public class UserService {
 		user.setTelephone(dto.getTelephone());
 		return userRepository.save(user);
 	}
-	
-	/*
-	public User find(long id){
-		User user = new User();
-		return user = userRepository.findOne(id);	
+
+	public boolean verifyUser(UserDTO usuario) {
+		User user = userRepository.findFirstByLoginAndPassword(usuario.getLogin(), usuario.getPassword());
+
+		if (user != null)
+			return true;
+		return false;
+
 	}
-	*/
 }

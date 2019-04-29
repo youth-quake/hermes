@@ -12,8 +12,15 @@ public class UserDTO implements Serializable {
 	private String email;
 	private String telephone;
 	
-	
 	public UserDTO() {}
+	
+	public UserDTO(String login, String password) {
+		super();
+		this.login = login;
+		this.password = password;
+	}
+
+
 
 	public long getId() {
 		return id;

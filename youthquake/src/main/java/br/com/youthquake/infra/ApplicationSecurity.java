@@ -20,6 +20,7 @@ public class ApplicationSecurity {
 		if(user != null) return true;
 		return false;
 		
+		
 	}
 	
 }

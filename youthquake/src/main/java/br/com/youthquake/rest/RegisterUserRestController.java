@@ -42,6 +42,7 @@ public class RegisterUserRestController {
 		}
 
 		User userInclude = this.userService.userInclude(userDto);
+		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
 				.toUri();
 
