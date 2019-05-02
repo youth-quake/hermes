@@ -33,7 +33,6 @@ public class User implements Serializable {
 		this.login = login;
 		this.password = password;
 		this.email = email;
-		this.telephone = telephone;
 	}
 	
 	private static final long serialVersionUID = -6888542263201514002L;
@@ -43,17 +42,17 @@ public class User implements Serializable {
 	@Column(name = "id_user")
 	private long idUser;
 
+	@JsonSerialize(using = DateSerializer.class)
 	@Column(name = "login")
 	private String login;
-
+	
+	@JsonSerialize(using = DateSerializer.class)
 	@Column(name = "password")
 	private String password;
 
+	@JsonSerialize(using = DateSerializer.class)
 	@Column(name = "email")
 	private String email;
-
-	@Column(name = "telephone")
-	private String telephone;
 
 	@OneToOne
 	@JoinColumn(name = "id_picture")
@@ -102,14 +101,6 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
 	}
 
 	public Picture getPicture() {

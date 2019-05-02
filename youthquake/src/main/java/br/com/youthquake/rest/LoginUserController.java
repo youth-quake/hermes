@@ -16,7 +16,7 @@ public class LoginUserController {
 	private UserService userService;
 	
 	
-	@GetMapping("/Login")
+	@GetMapping("/login")
 	public ResponseEntity<Boolean> login(@RequestBody UserDTO user){
 		return ResponseEntity.ok().body(userService.verifyUser(user));
 	}

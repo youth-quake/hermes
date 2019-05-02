@@ -23,7 +23,7 @@ import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.UserService;
 
 @RestController
-@RequestMapping("/Api/IncludeUser")
+@RequestMapping("/api/includeUser")
 public class RegisterUserRestController {
 	
 	
@@ -31,7 +31,7 @@ public class RegisterUserRestController {
 	private UserService userService;
 
 	@CrossOrigin
-	@PostMapping(path = "/Include")
+	@PostMapping(path = "/include")
 	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();

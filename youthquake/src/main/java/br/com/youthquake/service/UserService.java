@@ -24,7 +24,6 @@ public class UserService {
 		user.setLogin(dto.getLogin());
 		user.setPassword(dto.getPassword());
 		user.setEmail(dto.getEmail());
-		user.setTelephone(dto.getTelephone());
 		return userRepository.save(user);
 	}
 

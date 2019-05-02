@@ -10,7 +10,6 @@ public class UserDTO implements Serializable {
 	private String login;
 	private String password;
 	private String email;
-	private String telephone;
 	
 	public UserDTO() {}
 	
@@ -54,18 +53,9 @@ public class UserDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", telephone="
-				+ telephone + "]";
+		return "UserDTO [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", telephone=";
 	}
 }
 	
