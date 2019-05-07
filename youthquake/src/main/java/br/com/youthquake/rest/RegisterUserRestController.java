@@ -23,7 +23,6 @@ import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.UserService;
 
 @RestController
-@RequestMapping("/api/includeUser")
 public class RegisterUserRestController {
 	
 	
@@ -51,7 +50,7 @@ public class RegisterUserRestController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/GetAll")
+	@GetMapping("/getalluser")
 	public ResponseEntity<List<User>> getAllUserJSON() {
 		List<User> users = null;
 		users = userService.getAll();

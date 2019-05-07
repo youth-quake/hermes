@@ -25,7 +25,7 @@ public class UserPersistenceTest {
 
 	@Before
 	public void setup() {
-		user = new User("Thiago", "123", "pazthiagolima@gmail.com", "2556-8791");
+		user = new User("Thiago", "123", "pazthiagolima@gmail.com");
 		allUsers.save(user);
 	}
 

@@ -29,7 +29,7 @@ public class User implements Serializable {
 	// Constructors
 	public User() {}
 
-	public User(String login, String password, String email, String telephone) {
+	public User(String login, String password, String email) {
 		this.login = login;
 		this.password = password;
 		this.email = email;
@@ -42,15 +42,15 @@ public class User implements Serializable {
 	@Column(name = "id_user")
 	private long idUser;
 
-	@JsonSerialize(using = DateSerializer.class)
+	@Column(name = "name")
+	private String name;
+	
 	@Column(name = "login")
 	private String login;
-	
-	@JsonSerialize(using = DateSerializer.class)
+		
 	@Column(name = "password")
 	private String password;
 
-	@JsonSerialize(using = DateSerializer.class)
 	@Column(name = "email")
 	private String email;
 
@@ -110,5 +110,12 @@ public class User implements Serializable {
 	public void setPicture(Picture picture) {
 		this.picture = picture;
 	}
-
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 }

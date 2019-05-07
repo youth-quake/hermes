@@ -21,6 +21,7 @@ public class UserService {
 
 	public User userInclude(UserDTO dto) {
 		User user = new User();
+		user.setName(dto.getName());
 		user.setLogin(dto.getLogin());
 		user.setPassword(dto.getPassword());
 		user.setEmail(dto.getEmail());

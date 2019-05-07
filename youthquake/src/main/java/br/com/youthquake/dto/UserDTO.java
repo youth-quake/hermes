@@ -7,6 +7,7 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = -6888542263201514002L;
 
 	private long id;
+	private String name;
 	private String login;
 	private String password;
 	private String email;
@@ -19,8 +20,14 @@ public class UserDTO implements Serializable {
 		this.password = password;
 	}
 
-
-
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -55,7 +62,7 @@ public class UserDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", telephone=";
+		return "UserDTO [id=" + id + ", name="+ name +", login=" + login + ", password=" + password + ", email=" + email;
 	}
 }
 	

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name = "tbl_goal")
-public class Goal {
+public class GoalTxt {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,13 +52,13 @@ public class Goal {
 	private int percentage;
 	
 	//Constructors
-	public Goal() {
+	public GoalTxt() {
 		
 	}
 	
 	
 
-	public Goal(int idGoal, String name, String description, String dtStart, String dtEnd, int value,
+	public GoalTxt(int idGoal, String name, String description, String dtStart, String dtEnd, int value,
 			int valueAccumulated, int percentage) {
 		super();
 		this.idGoal = idGoal;

@@ -21,7 +21,7 @@ public class ReadTxtFile {
 	          System.exit( 1 );
 	       }
 
-	       Goal goal= new Goal(0, null, null, null, null, 0, 0, 0);
+	       GoalTxt goal= new GoalTxt(0, null, null, null, null, 0, 0, 0);
 	       
 	       System.out.printf( "%-10s%-25s%-30s%-15s%-15s%-10s%-20s%-10s\n", "Goal ID","Name","Description","Start Date","End Date", "Value", "Value Accumulated", "Percentage" );
 	       
