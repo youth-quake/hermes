@@ -61,4 +61,14 @@ public class UserREST {
 	public ResponseEntity<Boolean> login(@RequestBody UserDTO user) {
 		return ResponseEntity.ok().body(userService.verifyUser(user));
 	}
+	
+	
+	// API para retornar usuario através do ID	
+	@CrossOrigin
+	@GetMapping("/profile")
+	public ResponseEntity<User> getInformationById(UserDTO dto){
+		User user = null;
+		user = userService.getUserInfo(dto);
+		return ResponseEntity.status(HttpStatus.OK).body(user);
+	}
 }
