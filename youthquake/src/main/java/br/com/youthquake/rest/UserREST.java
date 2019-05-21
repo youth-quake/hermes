@@ -23,9 +23,8 @@ import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.UserService;
 
 @RestController
-public class RegisterUserRestController {
-	
-	
+public class UserREST {
+
 	@Autowired
 	private UserService userService;
 
@@ -41,19 +40,25 @@ public class RegisterUserRestController {
 		}
 
 		User userInclude = this.userService.userInclude(userDto);
-		
+
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
 				.toUri();
 
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-	
+
 	@CrossOrigin
 	@GetMapping("/getalluser")
 	public ResponseEntity<List<User>> getAllUserJSON() {
 		List<User> users = null;
 		users = userService.getAll();
 		return ResponseEntity.status(HttpStatus.OK).body(users);
+	}
+
+	@CrossOrigin
+	@GetMapping("/login")
+	public ResponseEntity<Boolean> login(@RequestBody UserDTO user) {
+		return ResponseEntity.ok().body(userService.verifyUser(user));
 	}
 }

@@ -62,10 +62,10 @@ public class User implements Serializable {
 	private List<Movements> movements = new ArrayList<>();
 
 	@OneToMany
-	private List<Couple> couples = new ArrayList<>();
+	private List<Friends> couples = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "users")
-	private List<Goal> goals = new ArrayList<>();
+	@OneToMany(mappedBy = "users")
+	private List<Target> goals = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers = new ArrayList<>();

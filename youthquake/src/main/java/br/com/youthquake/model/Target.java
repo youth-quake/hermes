@@ -3,6 +3,7 @@ package br.com.youthquake.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,20 +21,17 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(name = "tbl_goal")
-public class Goal {
+@Table(name = "tbl_target")
+public class Target {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_goal")
-	private int idGoal;
+	@Column(name = "id_target")
+	private int idTarget;
 	
-	
-	@ManyToMany
-	@JoinTable(name = "goal_users", 
-			  joinColumns = @JoinColumn(name = "id_goal"), 
-			  inverseJoinColumns = @JoinColumn(name = "id_user"))
-	private List<User> users = new ArrayList<>();
+	@Column(name="id_user")
+	@ManyToOne(cascade=CascadeType.ALL)
+	private User user;
 	
 	@Column(name = "name")
 	private String name;
@@ -57,18 +55,11 @@ public class Goal {
 	private int percentage;
 	
 	//Constructors
-	public Goal() {
+	public Target() {
 		
 	}
 
-	//Getters and Setters
-	public int getIdGoal() {
-		return idGoal;
-	}
-
-	public void setIdGoal(int idGoal) {
-		this.idGoal = idGoal;
-	}
+	//Getters and Setter
 
 	public String getName() {
 		return name;
@@ -126,12 +117,11 @@ public class Goal {
 		this.percentage = percentage;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public User getUsers() {
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(User user) {
+		this.user = user;
 	}
-	
 }

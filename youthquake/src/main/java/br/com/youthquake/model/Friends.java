@@ -18,13 +18,13 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(name = "tbl_couple")
-public class Couple {
+@Table(name = "tbl_friends")
+public class Friends {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_couple")
-	private int idCouple;
+	@Column(name = "id_friends")
+	private int idFriends;
 
 	@ManyToOne
 	@JoinColumn(name="id_user_1")
@@ -35,57 +35,52 @@ public class Couple {
 	@JoinColumn(name="id_user_2")
 	private User user2;
 	
-	@Column(name = "name")
-	private String name;
-	
-	@OneToMany
+	@OneToMany(mappedBy="idFriends")
 	private List<Bet> bets = new ArrayList<>();
 
 	
 	//Constructors
-	public Couple() {
+	public Friends() {
 		
 	}
-	
-	//Getters and Setters
-	public int getIdCouple() {
-		return idCouple;
+
+
+	public int getIdFriends() {
+		return idFriends;
 	}
 
-	public void setIdCouple(int idCouple) {
-		this.idCouple = idCouple;
+
+	public void setIdFriends(int idFriends) {
+		this.idFriends = idFriends;
 	}
+
 
 	public User getUser1() {
 		return user1;
 	}
 
+
 	public void setUser1(User user1) {
 		this.user1 = user1;
 	}
+
 
 	public User getUser2() {
 		return user2;
 	}
 
+
 	public void setUser2(User user2) {
 		this.user2 = user2;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public List<Bet> getBets() {
 		return bets;
 	}
 
+
 	public void setBets(List<Bet> bets) {
 		this.bets = bets;
 	}
-	
 }
