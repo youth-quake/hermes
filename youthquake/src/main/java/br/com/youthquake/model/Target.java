@@ -27,7 +27,7 @@ public class Target {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_target")
-	private int idTarget;
+	private long idTarget;
 	
 	@Column(name="id_user")
 	@ManyToOne(cascade=CascadeType.ALL)
