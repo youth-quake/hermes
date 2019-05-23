@@ -17,23 +17,12 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import br.com.youthquake.dto.UserDTO;
 
 @Entity
 @Component
 @Table(name = "tbl_user")
 public class User implements Serializable {
-	
-	// Constructors
-	public User() {}
-
-	public User(String login, String password, String email) {
-		this.login = login;
-		this.password = password;
-		this.email = email;
-	}
 	
 	private static final long serialVersionUID = -6888542263201514002L;
 
@@ -62,14 +51,22 @@ public class User implements Serializable {
 	private List<Movements> movements = new ArrayList<>();
 
 	@OneToMany
-	private List<Couple> couples = new ArrayList<>();
+	private List<Friends> friends = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "users")
-	private List<Goal> goals = new ArrayList<>();
+	@OneToMany(mappedBy = "user")
+	private List<Target> goals = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers = new ArrayList<>();
 
+	// Constructors
+	public User() {}
+
+	public User(String login, String password, String email) {
+		this.login = login;
+		this.password = password;
+		this.email = email;
+	}
 	// Getters and Setters
 	public long getIdUser() {
 		return idUser;
@@ -117,5 +114,13 @@ public class User implements Serializable {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	public void userUpdateInformations(UserDTO dto) {
+		this.setLogin(dto.getLogin());
+		this.setPassword(dto.getPassword());
+		this.setEmail(dto.getEmail());
+		this.setPicture(dto.getPicture());
 	}
 }
