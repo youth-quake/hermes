@@ -39,6 +39,5 @@ public class UserService {
 		if (user != null)
 			return true;
 		return false;
-
 	}
 }

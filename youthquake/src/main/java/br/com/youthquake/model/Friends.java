@@ -16,6 +16,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
 @Component
 @Table(name = "tbl_friends")
@@ -28,11 +31,13 @@ public class Friends {
 
 	@ManyToOne
 	@JoinColumn(name="id_user_1")
+	@JsonDeserialize(as = User.class)
 	private User user1;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="id_user_2")
+	@JsonDeserialize(as = User.class)
 	private User user2;
 	
 	@OneToMany(mappedBy="idFriends")

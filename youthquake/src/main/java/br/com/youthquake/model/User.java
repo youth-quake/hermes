@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
@@ -25,15 +26,6 @@ import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 @Component
 @Table(name = "tbl_user")
 public class User implements Serializable {
-	
-	// Constructors
-	public User() {}
-
-	public User(String login, String password, String email) {
-		this.login = login;
-		this.password = password;
-		this.email = email;
-	}
 	
 	private static final long serialVersionUID = -6888542263201514002L;
 
@@ -62,14 +54,22 @@ public class User implements Serializable {
 	private List<Movements> movements = new ArrayList<>();
 
 	@OneToMany
-	private List<Friends> couples = new ArrayList<>();
+	private List<Friends> friends = new ArrayList<>();
 
-	@OneToMany(mappedBy = "users")
+	@OneToMany(mappedBy = "user")
 	private List<Target> goals = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers = new ArrayList<>();
 
+	// Constructors
+	public User() {}
+
+	public User(String login, String password, String email) {
+		this.login = login;
+		this.password = password;
+		this.email = email;
+	}
 	// Getters and Setters
 	public long getIdUser() {
 		return idUser;

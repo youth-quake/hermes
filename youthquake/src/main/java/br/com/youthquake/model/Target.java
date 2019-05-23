@@ -29,8 +29,8 @@ public class Target {
 	@Column(name = "id_target")
 	private long idTarget;
 	
-	@Column(name="id_user")
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
+	@JoinColumn(name = "id_user")
 	private User user;
 	
 	@Column(name = "name")
