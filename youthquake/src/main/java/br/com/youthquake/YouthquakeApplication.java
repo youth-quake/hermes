@@ -13,4 +13,5 @@ public class YouthquakeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(YouthquakeApplication.class, args);
 	}
+	
 }

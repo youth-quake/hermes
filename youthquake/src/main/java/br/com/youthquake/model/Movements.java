@@ -29,10 +29,6 @@ public class Movements {
 	@JoinColumn(name = "id_user")
 	private User user;
 
-	@OneToOne
-	@JoinColumn(name = "id_category")
-	private Category category;
-
 	@Column(name = "value")
 	private double value;
 
@@ -61,14 +57,6 @@ public class Movements {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
 	}
 
 	public double getValue() {

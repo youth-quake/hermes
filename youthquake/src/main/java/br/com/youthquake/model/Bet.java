@@ -23,8 +23,8 @@ public class Bet {
 	private int idBet;
 	
 	@ManyToOne
-	@JoinColumn(name="id_couple")
-	private Couple id_couple;
+	@JoinColumn(name="id_friends")
+	private Friends idFriends;
 	
 	@Column(name = "description")
 	private String description;
@@ -56,12 +56,12 @@ public class Bet {
 		this.idBet = idBet;
 	}
 
-	public Couple getId_couple() {
-		return id_couple;
+	public Friends getIdFriends() {
+		return idFriends;
 	}
 
-	public void setId_couple(Couple id_couple) {
-		this.id_couple = id_couple;
+	public void setIdFriends(Friends idFriends) {
+		this.idFriends = idFriends;
 	}
 
 	public String getDescription() {
