@@ -17,10 +17,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import br.com.youthquake.dto.UserDTO;
 
 @Entity
 @Component
@@ -117,5 +114,13 @@ public class User implements Serializable {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	public void userUpdateInformations(UserDTO dto) {
+		this.setLogin(dto.getLogin());
+		this.setPassword(dto.getPassword());
+		this.setEmail(dto.getEmail());
+		this.setPicture(dto.getPicture());
 	}
 }

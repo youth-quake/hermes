@@ -1,11 +1,10 @@
 package br.com.youthquake.service;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import br.com.youthquake.dto.UserDTO;
 import br.com.youthquake.model.User;
@@ -32,6 +31,12 @@ public class UserService {
 		user.setPassword(dto.getPassword());
 		user.setEmail(dto.getEmail());
 		return userRepository.save(user);
+	}
+	
+	public User userUpdate(long id, UserDTO dto) {
+		User userRepo = userRepository.getOne(id);
+		userRepo.userUpdateInformations(dto);
+		return userRepository.save(userRepo);
 	}
 
 	public boolean verifyUser(String login, String password) {
