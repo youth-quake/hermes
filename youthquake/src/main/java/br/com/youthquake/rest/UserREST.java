@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,9 +58,9 @@ public class UserREST {
 	}
 
 	@CrossOrigin
-	@GetMapping("/login")
-	public ResponseEntity<Boolean> login(@RequestBody UserDTO user) {
-		return ResponseEntity.ok().body(userService.verifyUser(user));
+	@GetMapping("/login/{login}/{password}")
+	public ResponseEntity<Boolean> login(@PathVariable String login,@PathVariable String password) {
+		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 	
 	

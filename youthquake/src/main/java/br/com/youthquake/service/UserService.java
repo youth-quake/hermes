@@ -33,8 +33,8 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public boolean verifyUser(UserDTO usuario) {
-		User user = userRepository.findFirstByLoginAndPassword(usuario.getLogin(), usuario.getPassword());
+	public boolean verifyUser(String login, String password) {
+		User user = userRepository.findFirstByLoginAndPassword(login, password);
 
 		if (user != null)
 			return true;
