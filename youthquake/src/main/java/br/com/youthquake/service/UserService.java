@@ -1,5 +1,6 @@
 package br.com.youthquake.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,8 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	public User getUserInfo(UserDTO u){
-		return userRepository.GetInformationUserById(u.getId());
+	public List<User> getUserInfo(long id){
+		return userRepository.GetInformationUserById(id);
 	}
 
 	public User userInclude(UserDTO dto) {

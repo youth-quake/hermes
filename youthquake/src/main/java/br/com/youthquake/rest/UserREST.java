@@ -66,10 +66,10 @@ public class UserREST {
 	
 	// API para retornar usuario através do ID	
 	@CrossOrigin
-	@GetMapping("/profile")
-	public ResponseEntity<User> getInformationById(UserDTO dto){
-		User user = null;
-		user = userService.getUserInfo(dto);
+	@GetMapping("/profile/{id}")
+	public ResponseEntity<List<User>> getInformationById(@PathVariable long id){
+		List<User> user = null;
+		user = userService.getUserInfo(id);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 }
