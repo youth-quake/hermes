@@ -1,28 +1,28 @@
 package br.com.youthquake.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import br.com.youthquake.dto.TargetDTO;
+
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Component
 @Table(name = "tbl_target")
-public class Target {
+public class Target implements Serializable {
 	
 	private static final long serialVersionUID = -6888542263201514002L;
 	
@@ -125,5 +125,14 @@ public class Target {
 
 	public void setUsers(User user) {
 		this.user = user;
+	}
+	
+	public void targetUpdateInformations(TargetDTO dto){
+		this.setDescription(dto.getDescription());
+		this.setDtStart(dto.getDtStart());
+		this.setDtEnd(dto.getDtEnd());
+		this.setName(dto.getName());
+		this.setValue(dto.getValue());
+		this.setValueAccumulated(dto.getValueAccumulated());
 	}
 }

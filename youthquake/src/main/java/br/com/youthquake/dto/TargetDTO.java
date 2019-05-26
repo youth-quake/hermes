@@ -8,8 +8,10 @@ import javax.persistence.ManyToOne;
 
 import br.com.youthquake.model.User;
 
-public class TargetDTO implements Serializable {
+public class TargetDTO implements Serializable{
 
+	private static final long serialVersionUID = -6888542263201514002L;
+	
 	private long idTarget;
 	private User user;
 	private String name;
