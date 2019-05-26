@@ -24,6 +24,8 @@ import org.springframework.stereotype.Component;
 @Table(name = "tbl_target")
 public class Target {
 	
+	private static final long serialVersionUID = -6888542263201514002L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_target")
