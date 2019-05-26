@@ -1,20 +1,12 @@
 package br.com.youthquake.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -46,13 +38,13 @@ public class Target {
 	private String dtEnd;
 	
 	@Column(name = "value")
-	private int value;
+	private double value;
 	
 	@Column(name = "value_accumulated")
-	private int valueAccumulated;
+	private double valueAccumulated;
 	
 	@Column(name = "percentage")
-	private int percentage;
+	private double percentage;
 	
 	//Constructors
 	public Target() {
@@ -93,35 +85,35 @@ public class Target {
 		this.dtEnd = dtEnd;
 	}
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 
-	public int getValueAccumulated() {
+	public double getValueAccumulated() {
 		return valueAccumulated;
 	}
 
-	public void setValueAccumulated(int valueAccumulated) {
+	public void setValueAccumulated(double valueAccumulated) {
 		this.valueAccumulated = valueAccumulated;
 	}
 
-	public int getPercentage() {
+	public double getPercentage() {
 		return percentage;
 	}
 
-	public void setPercentage(int percentage) {
+	public void setPercentage(double percentage) {
 		this.percentage = percentage;
 	}
 
-	public User getUsers() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUsers(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 }

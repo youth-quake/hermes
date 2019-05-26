@@ -54,7 +54,7 @@ public class User implements Serializable {
 	private List<Friends> friends = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
-	private List<Target> goals = new ArrayList<>();
+	private List<Target> target = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers = new ArrayList<>();
