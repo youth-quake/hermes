@@ -23,7 +23,7 @@ public class Movements {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_movement")
-	private int idMovement;
+	private long idMovement;
 
 	@OneToOne
 	@JoinColumn(name = "id_user")
@@ -43,11 +43,11 @@ public class Movements {
 	}
 
 	// Getters and Setters
-	public int getIdMovement() {
+	public long getIdMovement() {
 		return idMovement;
 	}
 
-	public void setIdMovement(int idMovement) {
+	public void setIdMovement(long idMovement) {
 		this.idMovement = idMovement;
 	}
 
