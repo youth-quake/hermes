@@ -26,4 +26,8 @@ public class FriendsService {
 			return true;
 		return false;
 	}
+	
+	public void deleteFriends(long idFriend) {
+		friendsRepository.deleteById(idFriend);
+	}
 }
