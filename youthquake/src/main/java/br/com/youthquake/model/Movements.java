@@ -1,5 +1,6 @@
 package br.com.youthquake.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +16,15 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import br.com.youthquake.dto.MovementsDTO;
+
 @Entity
 @Component
 @Table(name = "tbl_moviments")
-public class Movements {
+public class Movements implements Serializable{
 
+	private static final long serialVersionUID = -6888542263201514002L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_movement")
@@ -86,5 +91,10 @@ public class Movements {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-
+	
+	public void movementUpdateInformation(MovementsDTO dto){
+		this.setReference(dto.getReference());
+		this.setType(dto.getType());
+		this.setValue(dto.getValue());
+	}
 }
