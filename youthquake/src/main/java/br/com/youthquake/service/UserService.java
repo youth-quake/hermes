@@ -2,9 +2,10 @@ package br.com.youthquake.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import br.com.youthquake.dto.UserDTO;
 import br.com.youthquake.model.User;
@@ -15,13 +16,23 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	HttpSession session;
+	
+	private static String SESSION_USER = "SessionUser";
+	
 
 	public List<User> getAll() {
 		return userRepository.findAll();
 	}
 	
-	public List<User> getUserInfo(long id){
-		return userRepository.GetInformationUserById(id);
+	/* método que recarrega as informações do usuário que está na sessão no momento que 
+	   ele se loga
+	*/
+	public List<User> getUserInfo(){
+		User u = (User)this.session.getAttribute(SESSION_USER);
+		return userRepository.GetInformationUserById(u.getIdUser());
 	}
 
 	public User userInclude(UserDTO dto) {
@@ -42,8 +53,12 @@ public class UserService {
 	public boolean verifyUser(String login, String password) {
 		User user = userRepository.findFirstByLoginAndPassword(login, password);
 
-		if (user != null)
+		if (user != null) {
+			session.setAttribute(SESSION_USER, user);
+			System.out.println(session);
 			return true;
+		}
+			
 		return false;
 	}
 }
