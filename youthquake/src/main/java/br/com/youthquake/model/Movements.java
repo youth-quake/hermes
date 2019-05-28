@@ -1,15 +1,11 @@
 package br.com.youthquake.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,7 +19,7 @@ public class Movements {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_movement")
-	private int idMovement;
+	private Long idMovement;
 
 	@OneToOne
 	@JoinColumn(name = "id_user")
@@ -43,11 +39,11 @@ public class Movements {
 	}
 
 	// Getters and Setters
-	public int getIdMovement() {
+	public Long getIdMovement() {
 		return idMovement;
 	}
 
-	public void setIdMovement(int idMovement) {
+	public void setIdMovement(Long idMovement) {
 		this.idMovement = idMovement;
 	}
 

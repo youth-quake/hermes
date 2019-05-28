@@ -2,40 +2,39 @@ package br.com.youthquake.dto;
 
 import java.io.Serializable;
 
-import br.com.youthquake.model.User;
 
 public class FriendsDTO implements Serializable {
 
 	private static final long serialVersionUID = -6888542263201514002L;
 	
-	private int idFriends;
-	private User user1;
-	private User user2;
+	private Long idFriends;
+	private Long user1;
+	private Long user2;
 	
 	public FriendsDTO() {}
 
-	public FriendsDTO(int idFriends, User user1, User user2) {
+	public FriendsDTO(Long idFriends, Long user1, Long user2) {
 		super();
 		this.idFriends = idFriends;
 		this.user1 = user1;
 		this.user2 = user2;
 	}
-	public int getIdFriends() {
+	public Long getIdFriends() {
 		return idFriends;
 	}
-	public void setIdFriends(int idFriends) {
+	public void setIdFriends(Long idFriends) {
 		this.idFriends = idFriends;
 	}
-	public User getUser1() {
+	public Long getUser1() {
 		return user1;
 	}
-	public void setUser1(User user1) {
+	public void setUser1(Long user1) {
 		this.user1 = user1;
 	}
-	public User getUser2() {
+	public Long getUser2() {
 		return user2;
 	}
-	public void setUser2(User user2) {
+	public void setUser2(Long user2) {
 		this.user2 = user2;
 	}
 
