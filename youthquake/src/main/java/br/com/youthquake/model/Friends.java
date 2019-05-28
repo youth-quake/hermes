@@ -11,13 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Component
@@ -27,20 +23,18 @@ public class Friends {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_friends")
-	private int idFriends;
+	private Long idFriends;
 
 	@ManyToOne
 	@JoinColumn(name="id_user_1")
-	@JsonDeserialize(as = User.class)
 	private User user1;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="id_user_2")
-	@JsonDeserialize(as = User.class)
 	private User user2;
 	
-	@OneToMany(mappedBy="idFriends")
+	@OneToMany
 	private List<Bet> bets = new ArrayList<>();
 
 	
@@ -49,13 +43,20 @@ public class Friends {
 		
 	}
 
+	public Friends(Long idFriends, User user1, User user2) {
+		super();
+		this.idFriends = idFriends;
+		this.user1 = user1;
+		this.user2 = user2;
+	}
 
-	public int getIdFriends() {
+
+	public Long getIdFriends() {
 		return idFriends;
 	}
 
 
-	public void setIdFriends(int idFriends) {
+	public void setIdFriends(Long idFriends) {
 		this.idFriends = idFriends;
 	}
 
@@ -77,15 +78,5 @@ public class Friends {
 
 	public void setUser2(User user2) {
 		this.user2 = user2;
-	}
-
-
-	public List<Bet> getBets() {
-		return bets;
-	}
-
-
-	public void setBets(List<Bet> bets) {
-		this.bets = bets;
 	}
 }

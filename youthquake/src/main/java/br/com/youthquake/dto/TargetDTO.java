@@ -2,23 +2,19 @@ package br.com.youthquake.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-
-import br.com.youthquake.model.User;
-
 public class TargetDTO implements Serializable {
 
+	private static final long serialVersionUID = -6888542263201514002L;
+	
 	private long idTarget;
-	private User user;
+	private Long user;
 	private String name;
 	private String description;
 	private String dtStart;
 	private String dtEnd;
-	private int value;
-	private int valueAccumulated;
-	private int percentage;
+	private double value;
+	private double valueAccumulated;
+	private double percentage;
 
 	public long getIdTarget() {
 		return idTarget;
@@ -28,11 +24,11 @@ public class TargetDTO implements Serializable {
 		this.idTarget = idTarget;
 	}
 
-	public User getUser() {
+	public Long getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Long user) {
 		this.user = user;
 	}
 
@@ -68,27 +64,27 @@ public class TargetDTO implements Serializable {
 		this.dtEnd = dtEnd;
 	}
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 
-	public int getValueAccumulated() {
+	public double getValueAccumulated() {
 		return valueAccumulated;
 	}
 
-	public void setValueAccumulated(int valueAccumulated) {
+	public void setValueAccumulated(double valueAccumulated) {
 		this.valueAccumulated = valueAccumulated;
 	}
 
-	public int getPercentage() {
+	public double getPercentage() {
 		return percentage;
 	}
 
-	public void setPercentage(int percentage) {
+	public void setPercentage(double percentage) {
 		this.percentage = percentage;
 	}
 }
