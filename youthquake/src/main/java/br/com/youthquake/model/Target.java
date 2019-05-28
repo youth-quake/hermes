@@ -2,6 +2,7 @@ package br.com.youthquake.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +14,13 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.youthquake.dto.TargetDTO;
 
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Component
 @Table(name = "tbl_target")
@@ -31,7 +33,8 @@ public class Target implements Serializable {
 	@Column(name = "id_target")
 	private long idTarget;
 	
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_user")
 	private User user;
 	
@@ -62,6 +65,14 @@ public class Target implements Serializable {
 	}
 
 	//Getters and Setter
+	
+	public long getIdTarget() {
+		return idTarget;
+	}
+
+	public void setIdTarget(long idTarget) {
+		this.idTarget = idTarget;
+	}
 
 	public String getName() {
 		return name;
@@ -119,13 +130,7 @@ public class Target implements Serializable {
 		this.percentage = percentage;
 	}
 
-	public User getUsers() {
-		return user;
-	}
-
-	public void setUsers(User user) {
-		this.user = user;
-	}
+	
 	
 	public void targetUpdateInformations(TargetDTO dto){
 		this.setDescription(dto.getDescription());

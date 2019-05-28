@@ -17,6 +17,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.youthquake.dto.UserDTO;
 
 @Entity
@@ -47,17 +50,21 @@ public class User implements Serializable {
 	@JoinColumn(name = "id_picture")
 	private Picture picture;
 
-	@OneToMany
-	private List<Movements> movements = new ArrayList<>();
-
-	@OneToMany
-	private List<Friends> friends = new ArrayList<>();
-
+	@JsonProperty
 	@OneToMany(mappedBy = "user")
-	private List<Target> goals = new ArrayList<>();
+	private List<Movements> movements;
 
+	@JsonProperty
+	@OneToMany(mappedBy = "user")
+	private List<Target> target;
+	
+	@JsonIgnore
+	@OneToMany
+	private List<Friends> friends;
+
+	@JsonIgnore
 	@ManyToMany(mappedBy = "users")
-	private List<AchievementUser> AchievementUsers = new ArrayList<>();
+	private List<AchievementUser> AchievementUsers;
 
 	// Constructors
 	public User() {}

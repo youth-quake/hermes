@@ -4,17 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.youthquake.dto.MovementsDTO;
 
@@ -30,7 +34,8 @@ public class Movements implements Serializable{
 	@Column(name = "id_movement")
 	private long idMovement;
 
-	@OneToOne
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_user")
 	private User user;
 
@@ -54,14 +59,6 @@ public class Movements implements Serializable{
 
 	public void setIdMovement(long idMovement) {
 		this.idMovement = idMovement;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public double getValue() {

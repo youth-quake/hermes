@@ -3,6 +3,7 @@ package br.com.youthquake.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,13 +30,13 @@ public class Friends {
 	@Column(name = "id_friends")
 	private int idFriends;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_1")
 	@JsonDeserialize(as = User.class)
 	private User user1;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_2")
 	@JsonDeserialize(as = User.class)
 	private User user2;

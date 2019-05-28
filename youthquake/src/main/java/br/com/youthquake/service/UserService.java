@@ -28,8 +28,8 @@ public class UserService {
 	}
 	
 	/* método que recarrega as informações do usuário que está na sessão no momento que 
-	   ele se loga
-	*/
+	   ele se loga*/
+	
 	public List<User> getUserInfo(){
 		User u = (User)this.session.getAttribute(SESSION_USER);
 		return userRepository.GetInformationUserById(u.getIdUser());
