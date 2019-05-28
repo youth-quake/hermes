@@ -10,7 +10,7 @@ import br.com.youthquake.model.User;
 
 public interface FriendsRepository extends JpaRepository<Friends, Long>{
 	
-	@Query("from Friends where user1 = ?1")
+	@Query("from Friends where user1 = ?1 or user2 = ?1")
 	List<Friends> findFirstByUser1AndUser2(User user1);
 
 }
