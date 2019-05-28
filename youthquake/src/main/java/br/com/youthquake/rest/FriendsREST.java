@@ -1,5 +1,7 @@
 package br.com.youthquake.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.youthquake.dto.FriendsDTO;
+import br.com.youthquake.model.Friends;
 import br.com.youthquake.service.FriendsService;
 
 @RestController
@@ -20,8 +23,10 @@ public class FriendsREST {
 	
 	@CrossOrigin
 	@GetMapping("/friend")
-	public ResponseEntity<Boolean> friend(@RequestBody FriendsDTO friend) {
-		return ResponseEntity.ok().body(friendService.verifyFriends(friend));
+	public ResponseEntity<List<Friends>> friend() {
+		List<Friends> f = null;
+		f = friendService.verifyFriends();
+		return ResponseEntity.ok().body(f);
 	}
 	
 	@CrossOrigin

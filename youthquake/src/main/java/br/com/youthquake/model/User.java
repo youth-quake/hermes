@@ -50,7 +50,7 @@ public class User implements Serializable {
 	@JoinColumn(name = "id_picture")
 	private Picture picture;
 
-	@JsonProperty
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Movements> movements;
 

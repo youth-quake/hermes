@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -33,6 +34,7 @@ public class Friends {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_1")
 	@JsonDeserialize(as = User.class)
+	@JsonIgnore
 	private User user1;
 	
 	
