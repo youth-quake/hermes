@@ -62,7 +62,7 @@ public class User implements Serializable {
 	@OneToMany
 	private List<Friends> friends;
 
-	@JsonIgnore
+	@JsonProperty
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers;
 

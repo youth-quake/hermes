@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.youthquake.dto.UserDTO;
+import br.com.youthquake.model.AchievementUser;
 import br.com.youthquake.model.User;
 import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.UserService;
@@ -73,6 +74,14 @@ public class UserREST {
 		user = userService.getUserInfo();
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
+	
+	//@CrossOrigin
+	//@GetMapping("/achievement")
+	//public ResponseEntity<List<AchievementUser>> getAchievementUser(){
+	//	List<AchievementUser> conquest = null;
+	//	conquest = userService.getAchievement();
+	//	return ResponseEntity.status(HttpStatus.OK).body(conquest);
+	//}
 	
 	
 	@CrossOrigin

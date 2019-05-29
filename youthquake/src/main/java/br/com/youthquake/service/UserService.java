@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.youthquake.dto.UserDTO;
+import br.com.youthquake.model.AchievementUser;
 import br.com.youthquake.model.User;
 import br.com.youthquake.repository.UserRepository;
 
@@ -34,6 +35,11 @@ public class UserService {
 		User u = (User)this.session.getAttribute(SESSION_USER);
 		return userRepository.GetInformationUserById(u.getIdUser());
 	}
+	
+	//public List<AchievementUser> getAchievement(){
+	//	User u = (User)this.session.getAttribute(SESSION_USER);
+	//	return userRepository.GetAchievement(u);
+	//}
 
 	public User userInclude(UserDTO dto) {
 		User user = new User();
