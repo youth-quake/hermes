@@ -1,5 +1,9 @@
 package br.com.youthquake.service;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +18,19 @@ public class TargetService {
 	@Autowired
 	private TargetRepository targetRepository;
 	
+	@Autowired
+	HttpSession session;
+	
+	private static String SESSION_USER = "SessionUser";
+	
+	
 	public void deleteTarget(long idTarget) {
 		 targetRepository.deleteById(idTarget);
+	}
+	
+	public List<Target> getTargetMicroservice(){
+		User u = (User)this.session.getAttribute(SESSION_USER);
+		return targetRepository.getTargets(u);
 	}
 	
 	public Target updateTarget(long id, TargetDTO dto) {

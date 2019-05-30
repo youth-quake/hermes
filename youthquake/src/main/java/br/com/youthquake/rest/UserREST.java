@@ -75,15 +75,6 @@ public class UserREST {
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 	
-	//@CrossOrigin
-	//@GetMapping("/achievement")
-	//public ResponseEntity<List<AchievementUser>> getAchievementUser(){
-	//	List<AchievementUser> conquest = null;
-	//	conquest = userService.getAchievement();
-	//	return ResponseEntity.status(HttpStatus.OK).body(conquest);
-	//}
-	
-	
 	@CrossOrigin
 	@PutMapping("/user/update/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserDTO dto){
