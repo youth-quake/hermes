@@ -33,10 +33,10 @@ public class TargetREST {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/microservice")
-	public List<Target> getTargetToMicroservice(){
+	@GetMapping("/microservice/{idTarget}")
+	public List<Target> getTargetToMicroservice(@PathVariable long idTarget){
 		List<Target> target = null;
-		target = targetService.getTargetMicroservice();
+		target = targetService.getTargetMicroservice(idTarget);
 		return target;
 	}
 	

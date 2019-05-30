@@ -28,9 +28,8 @@ public class TargetService {
 		 targetRepository.deleteById(idTarget);
 	}
 	
-	public List<Target> getTargetMicroservice(){
-		User u = (User)this.session.getAttribute(SESSION_USER);
-		return targetRepository.getTargets(u);
+	public List<Target> getTargetMicroservice(long idTarget){
+		return targetRepository.getTargets(idTarget);
 	}
 	
 	public Target updateTarget(long id, TargetDTO dto) {
@@ -38,6 +37,4 @@ public class TargetService {
 		target.targetUpdateInformations(dto);
 		return targetRepository.save(target);
 	}
-	
-	
 }
