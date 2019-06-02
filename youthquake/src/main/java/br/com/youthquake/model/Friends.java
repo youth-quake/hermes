@@ -1,8 +1,10 @@
+
 package br.com.youthquake.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
 @Component
 @Table(name = "tbl_friends")
@@ -25,13 +30,16 @@ public class Friends {
 	@Column(name = "id_friends")
 	private Long idFriends;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_1")
+	@JsonDeserialize(as = User.class)
+	@JsonIgnore
 	private User user1;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_2")
+	@JsonIgnore
 	private User user2;
 	
 	@OneToMany

@@ -2,8 +2,7 @@ package br.com.youthquake.dto;
 
 import java.io.Serializable;
 
-public class TargetDTO implements Serializable {
-
+public class TargetDTO implements Serializable{
 	private static final long serialVersionUID = -6888542263201514002L;
 	
 	private long idTarget;

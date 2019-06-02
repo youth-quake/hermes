@@ -1,6 +1,5 @@
 package br.com.youthquake.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,12 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Component
@@ -28,15 +27,16 @@ public class AchievementUser {
 	@Column(name = "id_achievement_user")
 	private int idAchievementUser;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "achievement_users", 
 			  joinColumns = @JoinColumn(name = "id_achievement_user"), 
 			  inverseJoinColumns = @JoinColumn(name = "id_user"))
-	private List<User> users = new ArrayList<>();
+	private List<User> users;
 	
 	@OneToOne
 	@JoinColumn(name="id_achievement")
-	private User idAchievement;
+	private AchievementSystem idAchievement;
 	
 	@Column(name = "dt_conquest")
 	private String dtConquest;
@@ -57,12 +57,12 @@ public class AchievementUser {
 	}
 
 
-	public User getIdAchievement() {
+	public AchievementSystem getIdAchievement() {
 		return idAchievement;
 	}
 
 
-	public void setIdAchievement(User idAchievement) {
+	public void setIdAchievement(AchievementSystem idAchievement) {
 		this.idAchievement = idAchievement;
 	}
 
@@ -75,16 +75,4 @@ public class AchievementUser {
 	public void setDtConquest(String dtConquest) {
 		this.dtConquest = dtConquest;
 	}
-
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-	
-	
 }

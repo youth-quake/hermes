@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,13 +66,12 @@ public class UserREST {
 	
 	// API para retornar usuario através do ID	
 	@CrossOrigin
-	@GetMapping("/profile/{id}")
-	public ResponseEntity<List<User>> getInformationById(@PathVariable long id){
+	@GetMapping("/profile")
+	public ResponseEntity<List<User>> getInformationById(){
 		List<User> user = null;
-		user = userService.getUserInfo(id);
+		user = userService.getUserInfo();
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
-	
 	
 	@CrossOrigin
 	@PutMapping("/user/update/{id}")
