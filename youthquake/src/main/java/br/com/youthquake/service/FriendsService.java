@@ -2,6 +2,8 @@ package br.com.youthquake.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,12 @@ public class FriendsService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	HttpSession session;
 	
-	
+	private static String SESSION_USER = "SessionUser";
 	public List<Friends> getAll(){
 		return friendsRepository.findAll();
 	}
-	
 	
 	public Friends friendInclude(FriendsDTO dto) {
 		Friends friends = new Friends();
@@ -45,5 +47,19 @@ public class FriendsService {
 		if (friend != null)
 			return true;
 		return false;
+	}
+	
+	public List<Friends> verifyFriends() {
+		User u = (User)this.session.getAttribute(SESSION_USER);
+		return friendsRepository.findFirstByUser1AndUser2(u);
+	}
+	
+	public void deleteFriends(long idFriend) {
+		friendsRepository.deleteById(idFriend);
+	}
+
+	public List<Friends> getFriendInfo() {
+		User u = (User)this.session.getAttribute(SESSION_USER);
+		return friendsRepository.GetInformationFriendByIdUser(u.getIdUser());
 	}
 }

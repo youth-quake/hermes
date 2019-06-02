@@ -1,5 +1,7 @@
 package br.com.youthquake.model;
+import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +13,27 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import br.com.youthquake.dto.TargetDTO;
+
+
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Component
 @Table(name = "tbl_target")
-public class Target {
+public class Target implements Serializable {
+	
+	private static final long serialVersionUID = -6888542263201514002L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_target")
 	private long idTarget;
 	
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_user")
 	private User user;
 	
@@ -52,6 +64,14 @@ public class Target {
 	}
 
 	//Getters and Setter
+	
+	public long getIdTarget() {
+		return idTarget;
+	}
+
+	public void setIdTarget(long idTarget) {
+		this.idTarget = idTarget;
+	}
 
 	public String getName() {
 		return name;
@@ -115,5 +135,14 @@ public class Target {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public void targetUpdateInformations(TargetDTO dto){
+		this.setDescription(dto.getDescription());
+		this.setDtStart(dto.getDtStart());
+		this.setDtEnd(dto.getDtEnd());
+		this.setName(dto.getName());
+		this.setValue(dto.getValue());
+		this.setValueAccumulated(dto.getValueAccumulated());
 	}
 }

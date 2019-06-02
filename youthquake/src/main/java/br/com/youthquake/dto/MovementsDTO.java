@@ -1,18 +1,19 @@
 package br.com.youthquake.dto;
-import java.io.Serializable;
+import java.io.Serializable;	
+import br.com.youthquake.model.User;
 
 public class MovementsDTO implements Serializable {
 
 	private static final long serialVersionUID = -6888542263201514002L;
-
-	private Long idMovement;
+	
+	private long idMovement;
 	private Long user;
 	private double value;
 	private String type;
 	private String reference;
-	
+
 	public MovementsDTO() {}
-	
+
 	public MovementsDTO(Long idMovement, Long user, double value, String type, String reference) {
 		super();
 		this.idMovement = idMovement;
@@ -22,41 +23,50 @@ public class MovementsDTO implements Serializable {
 		this.reference = reference;
 	}
 	
-	public Long getIdMovement() {
+	public long getIdMovement() {
 		return idMovement;
 	}
-	public void setIdMovement(Long idMovement) {
+
+	public void setIdMovement(long idMovement) {
 		this.idMovement = idMovement;
 	}
+
+
 	public Long getUser() {
 		return user;
 	}
+
 	public void setUser(Long user) {
 		this.user = user;
 	}
+
 	public double getValue() {
 		return value;
 	}
+
 	public void setValue(double value) {
 		this.value = value;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getReference() {
 		return reference;
 	}
+
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "MovementsDTO [idMovement=" + idMovement + ", user=" + user + ", value=" + value + ", type=" + type
 				+ ", reference=" + reference + "]";
 	}
-	
 }
