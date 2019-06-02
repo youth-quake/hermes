@@ -21,9 +21,12 @@ public class FriendsService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
 	HttpSession session;
 	
 	private static String SESSION_USER = "SessionUser";
+	
 	public List<Friends> getAll(){
 		return friendsRepository.findAll();
 	}
@@ -39,27 +42,13 @@ public class FriendsService {
 		
 		return friendsRepository.save(friends);
 	}
-	
-	
-	public boolean verifyFriends(FriendsDTO friends) {
-		Friends friend = friendsRepository.findFirstByUser1AndUser2(friends.getUser1(), friends.getUser2());
-
-		if (friend != null)
-			return true;
-		return false;
-	}
-	
+		
 	public List<Friends> verifyFriends() {
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return friendsRepository.findFirstByUser1AndUser2(u);
+		return friendsRepository.findFriendsUser(u);
 	}
 	
 	public void deleteFriends(long idFriend) {
 		friendsRepository.deleteById(idFriend);
-	}
-
-	public List<Friends> getFriendInfo() {
-		User u = (User)this.session.getAttribute(SESSION_USER);
-		return friendsRepository.GetInformationFriendByIdUser(u.getIdUser());
 	}
 }

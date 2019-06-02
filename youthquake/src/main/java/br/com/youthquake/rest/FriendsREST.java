@@ -55,15 +55,6 @@ public class FriendsREST {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/friendsuser")
-	public ResponseEntity<List<Friends>> getInformationById() {
-		List<Friends> friends = null;
-		friends = friendService.getFriendInfo();
-		return ResponseEntity.status(HttpStatus.OK).body(friends);
-	}
-
-	
-	@CrossOrigin
 	@DeleteMapping("/friend/delete/{idFriends}")
 	public ResponseEntity<String> removeFriend(@PathVariable long idFriends){
 		friendService.deleteFriends(idFriends);
