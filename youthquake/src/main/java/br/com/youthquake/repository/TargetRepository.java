@@ -12,8 +12,8 @@ import br.com.youthquake.model.Target;
 @Repository
 public interface TargetRepository extends JpaRepository<Target, Long>{
 
-	@Query("from Target where idTarget = ?1")
-	List<Target> getTargets(long IdTarget);
+	@Query("from Target")
+	List<Target> getTargets();
 
 	@Query("from Target where user.idUser = ?1")
 	List<Target> GetInformationTargetByIdUser(long idUser);
