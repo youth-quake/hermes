@@ -34,10 +34,11 @@ public class FriendsService {
 	public Friends friendInclude(FriendsDTO dto) {
 		Friends friends = new Friends();
 		
-		User user1 = userRepository.findFirstByIdUser(dto.getUser1());
-		User user2 = userRepository.findFirstByIdUser(dto.getUser2());
+		User user1 = (User)this.session.getAttribute(SESSION_USER);
+		//User user2 = userRepository.findFirstByIdUser(dto.getUser2());				
+		User user2 = userRepository.findFirstByName(dto.getUser2());
 		
-		friends.setUser1(user1);
+		friends.setUser1(userRepository.findFirstByIdUser(user1.getIdUser()));
 		friends.setUser2(user2);
 		
 		return friendsRepository.save(friends);

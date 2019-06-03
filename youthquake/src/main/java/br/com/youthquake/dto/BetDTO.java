@@ -9,6 +9,8 @@ public class BetDTO implements Serializable {
 
 	private int idBet;
 	private Long idFriends;
+	private Long idUer1;
+	private Long idUer2;
 	private String description;
 	private double value;
 	private String name;
@@ -27,6 +29,24 @@ public class BetDTO implements Serializable {
 
 	public String getDescription() {
 		return description;
+	}
+	
+	
+	
+	public Long getIdUer1() {
+		return idUer1;
+	}
+
+	public void setIdUer1(Long idUer1) {
+		this.idUer1 = idUer1;
+	}
+
+	public Long getIdUer2() {
+		return idUer2;
+	}
+
+	public void setIdUer2(Long idUer2) {
+		this.idUer2 = idUer2;
 	}
 
 	public void setDescription(String description) {

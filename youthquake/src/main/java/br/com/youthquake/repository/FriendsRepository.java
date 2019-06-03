@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import br.com.youthquake.model.Bet;
 import br.com.youthquake.model.Friends;
 import br.com.youthquake.model.User;
 
@@ -23,4 +24,10 @@ public interface FriendsRepository extends JpaRepository<Friends, Long>{
 
 	@Query("from Friends where user1 = ?1")
 	List<Friends> findFriendsUser(User user1);
+	
+	
+	Friends findFirstByUser1_idUserAndUser2_idUser(Long idUser1, Long idUser2);
+
+	@Query("from Friends where user1.idUser = ?1 or user2.idUser = ?1")
+	List<Bet> findFirstByIdFriendsList(long idUser);
 }
