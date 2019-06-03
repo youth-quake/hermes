@@ -58,6 +58,11 @@ public class Bet {
 	public void setIdBet(int idBet) {
 		this.idBet = idBet;
 	}
+	
+	
+	public void setIdFriends(Friends idFriends) {
+		this.idFriends = idFriends;
+	}
 
 	public String getDescription() {
 		return description;

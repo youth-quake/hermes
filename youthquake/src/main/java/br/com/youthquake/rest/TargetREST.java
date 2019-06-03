@@ -49,13 +49,8 @@ public class TargetREST {
 		return ResponseEntity.created(location).body(response);
 	}
 
+	
 	@CrossOrigin
-	@DeleteMapping("/deleteTarget")
-	public ResponseEntity<Void> deleteTarget(TargetDTO dto) {
-		targetService.deleteTarget(dto);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}
-
 	@DeleteMapping("/delete/{idTarget}")
 	public ResponseEntity<String> deleteTarget(@PathVariable long idTarget) {
 		targetService.deleteTarget(idTarget);

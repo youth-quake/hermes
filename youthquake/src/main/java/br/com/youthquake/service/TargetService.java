@@ -2,6 +2,7 @@ package br.com.youthquake.service;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,10 @@ public class TargetService {
 	@Autowired
 	HttpSession session;
 	
-	private static String SESSION_USER = "SessionUser";
+	private static String SESSION_USER = "SessionUser";	
 	
-	public void deleteTarget(TargetDTO dto) {
-		 targetRepository.deleteById(dto.getIdTarget());
-	HttpSession session;
-	}	
-	
-	public void deleteTarget(long idTarget) {
-		 targetRepository.deleteById(idTarget);
+	public void deleteTarget(long idTarget) { 
+		targetRepository.deleteById(idTarget);
 	}
 	
 	public List<Target> getTargetMicroservice(long idTarget){

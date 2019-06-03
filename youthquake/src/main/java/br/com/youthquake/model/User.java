@@ -57,7 +57,7 @@ public class User implements Serializable {
 
 	@JsonProperty
 	@OneToMany(mappedBy = "user")
-	private List<Target> target = new ArrayList<>();
+	private List<Target> target;
 	
 	@JsonIgnore
 	@OneToMany
