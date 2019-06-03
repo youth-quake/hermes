@@ -1,5 +1,6 @@
 package br.com.youthquake.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 @Entity
 @Component
 @Table(name = "tbl_bet")
@@ -21,8 +24,9 @@ public class Bet {
 	@Column(name = "id_bet")
 	private int idBet;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_friends")
+	@JsonIgnore
 	private Friends idFriends;
 	
 	@Column(name = "description")
@@ -53,14 +57,6 @@ public class Bet {
 
 	public void setIdBet(int idBet) {
 		this.idBet = idBet;
-	}
-
-	public Friends getIdFriends() {
-		return idFriends;
-	}
-
-	public void setIdFriends(Friends idFriends) {
-		this.idFriends = idFriends;
 	}
 
 	public String getDescription() {

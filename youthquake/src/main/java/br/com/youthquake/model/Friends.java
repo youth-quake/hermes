@@ -41,8 +41,8 @@ public class Friends {
 	@JoinColumn(name="id_user_2")
 	private User user2;
 	
-	@OneToMany
-	private List<Bet> bets = new ArrayList<>();
+	@OneToMany(mappedBy = "idFriends")
+	private List<Bet> bets;
 
 	
 	//Constructors
