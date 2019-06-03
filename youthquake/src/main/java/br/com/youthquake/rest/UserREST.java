@@ -63,8 +63,7 @@ public class UserREST {
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 	
-	
-	// API para retornar usuario através do ID	
+
 	@CrossOrigin
 	@GetMapping("/profile")
 	public ResponseEntity<List<User>> getInformationById(){

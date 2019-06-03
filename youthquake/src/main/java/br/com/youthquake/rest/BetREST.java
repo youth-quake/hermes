@@ -46,13 +46,5 @@ public class BetREST {
 		response.setData(betInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-	
-	@CrossOrigin
-	@GetMapping("/betuser")
-	public ResponseEntity<List<Bet>> getInformationResponseEntity() {
-		List<Bet> bet = null;
-		bet = betService.getBetInfo();
-		return ResponseEntity.status(HttpStatus.OK).body(bet);
-	}
 
 }
