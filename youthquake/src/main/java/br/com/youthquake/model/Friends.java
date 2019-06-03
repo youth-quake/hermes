@@ -39,7 +39,6 @@ public class Friends {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_2")
-	@JsonIgnore
 	private User user2;
 	
 	@OneToMany
@@ -58,6 +57,7 @@ public class Friends {
 		this.user2 = user2;
 	}
 
+	
 
 	public Long getIdFriends() {
 		return idFriends;
@@ -87,4 +87,14 @@ public class Friends {
 	public void setUser2(User user2) {
 		this.user2 = user2;
 	}
+
+	public List<Bet> getBets() {
+		return bets;
+	}
+
+	public void setBets(List<Bet> bets) {
+		this.bets = bets;
+	}
+	
+	
 }
