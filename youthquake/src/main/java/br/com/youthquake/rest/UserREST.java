@@ -59,16 +59,16 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<Boolean> login(@PathVariable String login,@PathVariable String password) {
+	public ResponseEntity<User> login(@PathVariable String login,@PathVariable String password) {
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 	
 
 	@CrossOrigin
-	@GetMapping("/profile")
-	public ResponseEntity<List<User>> getInformationById(){
+	@GetMapping("/profile/{idUser}")
+	public ResponseEntity<List<User>> getInformationById(@PathVariable long idUser){
 		List<User> user = null;
-		user = userService.getUserInfo();
+		user = userService.getUserInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 	

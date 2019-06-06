@@ -31,9 +31,9 @@ public class UserService {
 	/* método que recarrega as informações do usuário que está na sessão no momento que 
 	   ele se loga*/
 	
-	public List<User> getUserInfo(){
+	public List<User> getUserInfo(long idUser){
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return userRepository.GetInformationUserById(u.getIdUser());
+		return userRepository.GetInformationUserById(idUser);
 	}
 	
 	//public List<AchievementUser> getAchievement(){
@@ -56,16 +56,16 @@ public class UserService {
 		return userRepository.save(userRepo);
 	}
 
-	public boolean verifyUser(String login, String password) {
+	public User verifyUser(String login, String password) {
 		User user = userRepository.findFirstByLoginAndPassword(login, password);
-
-		if (user != null) {
-			session.setAttribute(SESSION_USER, user);
+		session.setAttribute(SESSION_USER, user);
+		return user;
+		/*if (user != null) {
+			
 			System.out.println(session);
 			return true;
 		}
-			
-		
 		return false;
+		*/
 	}
 }
