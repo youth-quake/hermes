@@ -33,7 +33,7 @@ public class Target implements Serializable {
 	private long idTarget;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "id_user")
 	private User user;
 	

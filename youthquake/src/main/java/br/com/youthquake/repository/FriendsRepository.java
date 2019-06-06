@@ -22,9 +22,14 @@ public interface FriendsRepository extends JpaRepository<Friends, Long>{
 	@Query("from Friends where user2.idUser = ?1")
 	User findFirstByUser2(Long user2);
 
-	@Query("from Friends where user1 = ?1")
-	List<Friends> findFriendsUser(User user1);
+	@Query("from Friends where user2 = ?1")
+	List<Friends> findFriendsUser1(User user2);
 	
+	@Query("from Friends where user1 = ?1")
+	List<Friends> findFriendsUser2(User user2);
+	
+	@Query("from Friends where User.idUser or User2.idUser")
+	List<Friends> findByUser1_idUserOrUser2_idUser(Long idUser);
 	
 	Friends findFirstByUser1_idUserAndUser2_idUser(Long idUser1, Long idUser2);
 

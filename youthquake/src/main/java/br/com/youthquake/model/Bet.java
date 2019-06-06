@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Component
