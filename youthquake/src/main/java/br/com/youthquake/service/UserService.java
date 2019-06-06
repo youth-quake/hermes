@@ -28,18 +28,10 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	/* método que recarrega as informações do usuário que está na sessão no momento que 
-	   ele se loga*/
-	
-	public List<User> getUserInfo(){
+	public List<User> getUserInfo(long idUser){
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return userRepository.GetInformationUserById(u.getIdUser());
+		return userRepository.GetInformationUserById(idUser);
 	}
-	
-	//public List<AchievementUser> getAchievement(){
-	//	User u = (User)this.session.getAttribute(SESSION_USER);
-	//	return userRepository.GetAchievement(u);
-	//}
 
 	public User userInclude(UserDTO dto) {
 		User user = new User();
@@ -50,22 +42,19 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
+	public void deleteUserById(long idUser){
+		userRepository.deleteById(idUser);
+	}
+	
 	public User userUpdate(long id, UserDTO dto) {
 		User userRepo = userRepository.getOne(id);
 		userRepo.userUpdateInformations(dto);
 		return userRepository.save(userRepo);
 	}
 
-	public boolean verifyUser(String login, String password) {
+	public User verifyUser(String login, String password) {
 		User user = userRepository.findFirstByLoginAndPassword(login, password);
-
-		if (user != null) {
-			session.setAttribute(SESSION_USER, user);
-			System.out.println(session);
-			return true;
-		}
-			
-		
-		return false;
+		session.setAttribute(SESSION_USER, user);
+		return user;
 	}
 }

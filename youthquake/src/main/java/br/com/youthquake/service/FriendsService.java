@@ -44,21 +44,11 @@ public class FriendsService {
 		return friendsRepository.save(friends);
 	}
 		
-	public List<Friends> verifyFriends() {
+	public List<Friends> verifyFriends(long idUser) {
 		List<Friends> friends = null;
-		
-		
 		User u = (User)this.session.getAttribute(SESSION_USER);	
-		friends = friendsRepository.findByUser1_idUserOrUser2_idUser(u.getIdUser());
-		
+		friends = friendsRepository.findFriendsUser(idUser);
 		return friends;
-		
-//		if(friends.getUser1().getIdUser() == u.getIdUser()) {
-//			return friendsRepository.findFriendsUser1(friends.getUser2());
-//		}
-//		if(friends.getUser2().getIdUser() == u.getIdUser()) {
-//			return friendsRepository.findFriendsUser2(friends.getUser1());
-//		}
 	}
 	
 	public void deleteFriends(long idFriend) {

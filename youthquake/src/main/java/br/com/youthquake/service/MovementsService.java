@@ -39,9 +39,9 @@ public class MovementsService {
 	}
 	
 	
-	public List<Movements> getMovementInfo(){
+	public List<Movements> getMovementInfo(long idUser){
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return movementsRepository.GetInformationMovementsByIdUser(u.getIdUser());
+		return movementsRepository.GetInformationMovementsByIdUser(idUser);
 	}
 
 	public void deleteMovementById(long idMovement) {

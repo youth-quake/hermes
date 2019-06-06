@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,16 +60,16 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<Boolean> login(@PathVariable String login,@PathVariable String password) {
+	public ResponseEntity<User> login(@PathVariable String login,@PathVariable String password) {
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 	
 
 	@CrossOrigin
-	@GetMapping("/profile")
-	public ResponseEntity<List<User>> getInformationById(){
+	@GetMapping("/profile/{idUser}")
+	public ResponseEntity<List<User>> getInformationById(@PathVariable long idUser){
 		List<User> user = null;
-		user = userService.getUserInfo();
+		user = userService.getUserInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 	
@@ -80,4 +81,10 @@ public class UserREST {
 		return ResponseEntity.ok().body(user);
 	}
 	
+	@CrossOrigin
+	@DeleteMapping("/user/delete/{idUser}")
+	public ResponseEntity<String> deleteMovement(@PathVariable long idUser) {
+		userService.deleteUserById(idUser);
+		return ResponseEntity.ok().body("Usuario deletado com sucesso!");
+	}
 }
