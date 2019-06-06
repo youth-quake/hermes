@@ -58,10 +58,10 @@ public class TargetREST {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/targetuser")
-	public ResponseEntity<List<Target>> responseEntity(){
+	@GetMapping("/get/{idUser}")
+	public ResponseEntity<List<Target>> responseEntity(@PathVariable long idUser){
 		List<Target> target = null;
-		target = targetService.getTargetInfo();
+		target = targetService.getTargetInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(target);
 	}
 

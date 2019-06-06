@@ -63,10 +63,10 @@ public class MovementsREST {
 	}
 
 	@CrossOrigin
-	@GetMapping("/movements")
-	public ResponseEntity<List<Movements>> getInformationResponseEntity() {
+	@GetMapping("/movements/{idUser}")
+	public ResponseEntity<List<Movements>> getInformationResponseEntity(@PathVariable long idUser) {
 		List<Movements> movements = null;
-		movements = movementsService.getMovementInfo();
+		movements = movementsService.getMovementInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(movements);
 	}
 

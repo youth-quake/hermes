@@ -44,10 +44,10 @@ public class FriendsService {
 		return friendsRepository.save(friends);
 	}
 		
-	public List<Friends> verifyFriends() {
+	public List<Friends> verifyFriends(long idUser) {
 		List<Friends> friends = null;
 		User u = (User)this.session.getAttribute(SESSION_USER);	
-		friends = friendsRepository.findFriendsUser(u);
+		friends = friendsRepository.findFriendsUser(idUser);
 		return friends;
 	}
 	

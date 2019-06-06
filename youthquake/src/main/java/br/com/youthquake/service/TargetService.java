@@ -58,8 +58,8 @@ public class TargetService {
 		return targetRepository.save(target);
 	}
 
-	public List<Target> getTargetInfo() {
+	public List<Target> getTargetInfo(long idUser) {
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return targetRepository.GetInformationTargetByIdUser(u.getIdUser());
+		return targetRepository.GetInformationTargetByIdUser(idUser);
 	}
 }

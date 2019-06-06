@@ -45,10 +45,10 @@ public class FriendsREST {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/friend")
-	public ResponseEntity<List<Friends>> friend() {
+	@GetMapping("/friend/{idUser}")
+	public ResponseEntity<List<Friends>> friend(@PathVariable long idUser) {
 		List<Friends> f = null;
-		f = friendService.verifyFriends();
+		f = friendService.verifyFriends(idUser);
 		return ResponseEntity.ok().body(f);
 	}
 	
