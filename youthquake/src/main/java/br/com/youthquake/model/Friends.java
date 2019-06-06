@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Component
 @Table(name = "tbl_friends")
-@JsonIgnoreProperties("user1.movements")
 public class Friends {
 	
 	@Id

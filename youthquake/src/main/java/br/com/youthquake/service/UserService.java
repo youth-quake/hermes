@@ -28,18 +28,10 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	/* método que recarrega as informações do usuário que está na sessão no momento que 
-	   ele se loga*/
-	
 	public List<User> getUserInfo(long idUser){
 		User u = (User)this.session.getAttribute(SESSION_USER);
 		return userRepository.GetInformationUserById(idUser);
 	}
-	
-	//public List<AchievementUser> getAchievement(){
-	//	User u = (User)this.session.getAttribute(SESSION_USER);
-	//	return userRepository.GetAchievement(u);
-	//}
 
 	public User userInclude(UserDTO dto) {
 		User user = new User();
@@ -48,6 +40,10 @@ public class UserService {
 		user.setPassword(dto.getPassword());
 		user.setEmail(dto.getEmail());
 		return userRepository.save(user);
+	}
+	
+	public void deleteUserById(long idUser){
+		userRepository.deleteById(idUser);
 	}
 	
 	public User userUpdate(long id, UserDTO dto) {
@@ -60,12 +56,5 @@ public class UserService {
 		User user = userRepository.findFirstByLoginAndPassword(login, password);
 		session.setAttribute(SESSION_USER, user);
 		return user;
-		/*if (user != null) {
-			
-			System.out.println(session);
-			return true;
-		}
-		return false;
-		*/
 	}
 }

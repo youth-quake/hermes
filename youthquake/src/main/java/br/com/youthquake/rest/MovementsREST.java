@@ -55,7 +55,8 @@ public class MovementsREST {
 		response.setData(movementsInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-
+	
+	@CrossOrigin
 	@DeleteMapping("/delete/{idMovement}")
 	public ResponseEntity<String> deleteMovement(@PathVariable long idMovement) {
 		movementsService.deleteMovementById(idMovement);

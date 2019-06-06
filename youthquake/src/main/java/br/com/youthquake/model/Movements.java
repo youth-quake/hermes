@@ -29,7 +29,7 @@ public class Movements implements Serializable{
 	private Long idMovement;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "id_user")
 	private User user;
 
