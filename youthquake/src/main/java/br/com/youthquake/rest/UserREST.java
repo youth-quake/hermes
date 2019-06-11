@@ -31,7 +31,7 @@ public class UserREST {
 	private UserService userService;
 
 	@CrossOrigin
-	@PostMapping(path = "/include")
+	@PostMapping(path = "/include/{idUser}")
 	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();

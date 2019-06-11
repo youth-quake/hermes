@@ -8,7 +8,7 @@ public class MovementsDTO implements Serializable {
 	
 	private long idMovement;
 	private Long user;
-	private double value;
+	private Double value;
 	private String type;
 	private String reference;
 
@@ -40,11 +40,11 @@ public class MovementsDTO implements Serializable {
 		this.user = user;
 	}
 
-	public double getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 

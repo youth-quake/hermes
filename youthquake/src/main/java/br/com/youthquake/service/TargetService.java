@@ -36,24 +36,21 @@ public class TargetService {
 		return targetRepository.getTargets();
 	}
 	
-	public Target updateTarget(long id, TargetDTO dto) {
-		Target target = targetRepository.getOne(id);
-		target.targetUpdateInformations(dto);
+	public Target updateTarget(long id, long idUser, TargetDTO dto) {
+		Target target = targetRepository.getTargetByUserAndTarget(idUser, id);
+		target.setValueAccumulated(dto.getValueAccumulated());
+		target.setPercentage(dto.getPercentage());
 		return targetRepository.save(target);
 	}
 	
-	public Target targetInclude(TargetDTO dto) {
+	public Target targetInclude(long idUser, TargetDTO dto) {
 		Target target = new Target();
-		
-		User u = (User)this.session.getAttribute(SESSION_USER);
-		target.setUser(userRepository.findFirstByIdUser(u.getIdUser()));
+		target.setUser(userRepository.findFirstByIdUser(idUser));
 		target.setName(dto.getName());
 		target.setDescription(dto.getDescription());
 		target.setDtStart(dto.getDtStart());
 		target.setDtEnd(dto.getDtEnd());
 		target.setValue(dto.getValue());
-		target.setValueAccumulated(dto.getValueAccumulated());
-		target.setPercentage(dto.getPercentage());
 		
 		return targetRepository.save(target);
 	}

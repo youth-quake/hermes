@@ -13,6 +13,7 @@ public class UserDTO implements Serializable {
 	private String login;
 	private String password;
 	private String email;
+	private String messageStatus;
 	private Picture picture;
 	
 	
@@ -72,10 +73,19 @@ public class UserDTO implements Serializable {
 	public void setPicture(Picture picture) {
 		this.picture = picture;
 	}
+	
+	public String getMessageStatus() {
+		return messageStatus;
+	}
+
+	public void setMessageStatus(String messageStatus) {
+		this.messageStatus = messageStatus;
+	}
 
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", name="+ name +", login=" + login + ", password=" + password + ", email=" + email;
+		return "UserDTO [id=" + id + ", name=" + name + ", login=" + login + ", password=" + password + ", email="
+				+ email + ", messageStatus=" + messageStatus + ", picture=" + picture + "]";
 	}
 }
 	

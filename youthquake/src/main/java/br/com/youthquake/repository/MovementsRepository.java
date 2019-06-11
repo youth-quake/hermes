@@ -10,6 +10,10 @@ import br.com.youthquake.model.Movements;
 
 @Repository
 public interface MovementsRepository extends JpaRepository<Movements, Long>{
+	
 	@Query("from Movements where user.idUser = ?1")
 	List<Movements> GetInformationMovementsByIdUser(long idUser);
+	
+	@Query("from Movements where user.idUser = ?1 and idMovement = ?2")
+	Movements getMovementsByIdAndUser(long idUser, long idMovement);
 }
