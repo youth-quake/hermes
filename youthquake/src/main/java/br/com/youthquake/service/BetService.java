@@ -43,7 +43,7 @@ public class BetService {
 		bet.setDescription(dto.getDescription());
 		bet.setTime(dto.getTime());
 		bet.setValue(dto.getValue());
-		bet.setResult(dto.getResult());
+		//bet.setResult(dto.getResult());
 		return betRepository.save(bet);
 	}
 }

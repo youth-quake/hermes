@@ -44,7 +44,10 @@ public class User implements Serializable {
 
 	@Column(name = "email")
 	private String email;
-
+	
+	@Column(name = "status_message")
+	private String messageStatus;
+	
 	@OneToOne
 	@JoinColumn(name = "id_picture")
 	private Picture picture;
@@ -64,7 +67,7 @@ public class User implements Serializable {
 	@JsonProperty
 	@ManyToMany(mappedBy = "users")
 	private List<AchievementUser> AchievementUsers;
-
+	
 	// Constructors
 	public User() {}
 
@@ -122,11 +125,19 @@ public class User implements Serializable {
 		this.name = name;
 	}
 	
+	public void setMessageStatus(String messageStatus) {
+		this.messageStatus = messageStatus;
+	}
+	
+	public String getMessageStatus() {
+		return messageStatus;
+	}
 	
 	public void userUpdateInformations(UserDTO dto) {
 		this.setLogin(dto.getLogin());
 		this.setPassword(dto.getPassword());
 		this.setEmail(dto.getEmail());
 		this.setPicture(dto.getPicture());
+		this.setMessageStatus(dto.getMessageStatus());
 	}
 }
