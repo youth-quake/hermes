@@ -27,7 +27,10 @@ public class AchievementSystem {
 	
 	@Column(name = "is_completed")
 	private boolean iscompleted;
-
+	
+	@Column(name = "description")
+	private String description;
+	
 	public int getIdAchievement() {
 		return idAchievement;
 	}
@@ -68,4 +71,11 @@ public class AchievementSystem {
 	}
 	
 	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
 }
