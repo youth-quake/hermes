@@ -14,7 +14,5 @@ public class MicroserviceApplication {
 		TargetMicroservice ts = SpringApplication
 				.run(MicroserviceApplication.class, args)
 				.getBean(TargetMicroservice.class);
-		
-		ts.getTargetUserToCSV();
 	}
 }
