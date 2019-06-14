@@ -70,7 +70,15 @@ public class MovementsREST {
 		movements = movementsService.getMovementInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(movements);
 	}
-
+	
+	@CrossOrigin
+	@GetMapping("/microservice/{idUser}")
+	public ResponseEntity<List<Movements>> microserviceMovements(@PathVariable long idUser) {
+		List<Movements> movements = null;
+		movements = movementsService.getMovementMicroservice(idUser);
+		return ResponseEntity.status(HttpStatus.OK).body(movements);
+	}
+	
 	@CrossOrigin
 	@PutMapping("/update/{idMovement}/{idUser}")
 	public ResponseEntity<Movements> updateMovement(@PathVariable long idMovement, @PathVariable long idUser,

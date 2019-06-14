@@ -52,4 +52,8 @@ public class MovementsService {
 		return movementsRepository.save(movement);
 	}
 
+
+	public List<Movements> getMovementMicroservice(long idUser) {
+		return movementsRepository.getMovementsMicroservice(idUser);
+	}
 }

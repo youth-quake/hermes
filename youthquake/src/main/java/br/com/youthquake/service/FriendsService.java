@@ -54,4 +54,10 @@ public class FriendsService {
 	public void deleteFriends(long idFriend) {
 		friendsRepository.deleteById(idFriend);
 	}
+
+	public List<User> searchFriends(String nameFriend) {
+		List<User> friends = null;
+		friends = friendsRepository.searchFriendByName(nameFriend);
+		return friends;
+	}
 }

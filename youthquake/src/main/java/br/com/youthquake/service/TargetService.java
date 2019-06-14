@@ -32,8 +32,8 @@ public class TargetService {
 		targetRepository.deleteById(idTarget);
 	}
 	
-	public List<Target> getTargetMicroservice(){
-		return targetRepository.getTargets();
+	public List<Target> getTargetMicroservice(long idUser){
+		return targetRepository.getTargets(idUser);
 	}
 	
 	public Target updateTarget(long id, long idUser, TargetDTO dto) {
