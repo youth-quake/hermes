@@ -142,6 +142,6 @@ public class User implements Serializable {
 
 	public void updateUserInfos(UserDTO dto) {
 		this.setMessageStatus(dto.getMessageStatus());
-		this.setPicture(dto.getPicture());
+		//this.setPicture(dto.getPicture());
 	}
 }
