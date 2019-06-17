@@ -57,4 +57,10 @@ public class UserService {
 		session.setAttribute(SESSION_USER, user);
 		return user;
 	}
+
+	public User updateInfoUser(long idUser, UserDTO dto) {
+		User user = userRepository.getOne(idUser);
+		user.updateUserInfos(dto);
+		return userRepository.save(user);
+	}
 }

@@ -134,10 +134,14 @@ public class User implements Serializable {
 	}
 	
 	public void userUpdateInformations(UserDTO dto) {
+		this.setName(dto.getName());
 		this.setLogin(dto.getLogin());
-		this.setPassword(dto.getPassword());
 		this.setEmail(dto.getEmail());
-		this.setPicture(dto.getPicture());
+		this.setPassword(dto.getPassword());
+	}
+
+	public void updateUserInfos(UserDTO dto) {
 		this.setMessageStatus(dto.getMessageStatus());
+		//this.setPicture(dto.getPicture());
 	}
 }

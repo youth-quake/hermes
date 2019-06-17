@@ -1,20 +1,24 @@
 package br.com.youthquake.rest;
 import java.net.URI;
-import javax.validation.Valid;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import br.com.youthquake.dto.FriendsDTO;
 import br.com.youthquake.model.Friends;
+import br.com.youthquake.model.User;
 import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.FriendsService;
 
@@ -42,6 +46,14 @@ public class FriendsREST {
 
 		response.setData(friendInclude);
 		return ResponseEntity.created(location).body(response);
+	}
+	
+	@CrossOrigin
+	@GetMapping("/friend/search/{nameFriend}")
+	public ResponseEntity<List<User>> searchFriend(@PathVariable String nameFriend){
+		List<User> user = null;
+		user = friendService.searchFriends(nameFriend);
+		return ResponseEntity.ok().body(user);
 	}
 	
 	@CrossOrigin

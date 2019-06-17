@@ -82,6 +82,14 @@ public class UserREST {
 	}
 	
 	@CrossOrigin
+	@PutMapping("user/updateinfo/{idUser}")
+	public ResponseEntity<User> updateInfoUser(@PathVariable long idUser, @RequestBody UserDTO dto){
+		User user = null;
+		user = userService.updateInfoUser(idUser, dto);
+		return ResponseEntity.ok().body(user);
+	}
+	
+	@CrossOrigin
 	@DeleteMapping("/user/delete/{idUser}")
 	public ResponseEntity<String> deleteMovement(@PathVariable long idUser) {
 		userService.deleteUserById(idUser);
