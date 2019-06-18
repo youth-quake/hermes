@@ -13,24 +13,21 @@ import org.springframework.stereotype.Component;
 @Component
 @Table(name = "tbl_achievement_system")
 public class AchievementSystem {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_achievement")
-	private int  idAchievement;
-	
+	private int idAchievement;
+
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "condition")
-	private int condition;
-	
-	@Column(name = "is_completed")
-	private boolean iscompleted;
-	
+
+	@Column(name = "number_required")
+	private int numberRequired;
+
 	@Column(name = "description")
 	private String description;
-	
+
 	public int getIdAchievement() {
 		return idAchievement;
 	}
@@ -39,13 +36,12 @@ public class AchievementSystem {
 		this.idAchievement = idAchievement;
 	}
 
-	
-	//Constructors
+	// Constructors
 	public AchievementSystem() {
-		
+
 	}
-	
-	//Getters and Setters
+
+	// Getters and Setters
 	public String getName() {
 		return name;
 	}
@@ -54,28 +50,20 @@ public class AchievementSystem {
 		this.name = name;
 	}
 
-	public int getCondition() {
-		return condition;
+	public int getNumberRequired() {
+		return numberRequired;
 	}
 
-	public void setCondition(int condition) {
-		this.condition = condition;
+	public void setNumberRequired(int numberRequired) {
+		this.numberRequired = numberRequired;
 	}
 
-	public boolean isIscompleted() {
-		return iscompleted;
-	}
-
-	public void setIscompleted(boolean iscompleted) {
-		this.iscompleted = iscompleted;
-	}
-	
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 	public String getDescription() {
 		return description;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 }
