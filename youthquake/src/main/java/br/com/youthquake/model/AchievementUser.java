@@ -1,7 +1,5 @@
 package br.com.youthquake.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +14,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.youthquake.dto.AchievementUserDTO;
 
 @Entity
 @Component
@@ -41,9 +41,6 @@ public class AchievementUser {
 
 	@Column(name = "progress")
 	private String progress;
-
-	@Column(name = "dt_conquest")
-	private String dtConquest;
 
 	// Constructors
 	public AchievementUser() {
@@ -90,13 +87,9 @@ public class AchievementUser {
 	public void setProgress(String progress) {
 		this.progress = progress;
 	}
-
-	public String getDtConquest() {
-		return dtConquest;
-	}
-
-	public void setDtConquest(String dtConquest) {
-		this.dtConquest = dtConquest;
+	
+	public void achievementUserUpdateInformation(AchievementUserDTO dto){
+		this.setQuantity(dto.getQuantity());
 	}
 
 }

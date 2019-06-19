@@ -68,6 +68,10 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user")
 	private List<AchievementUser> achievementUsers;
 	
+	@JsonProperty
+	@OneToMany(mappedBy = "user")
+	private List<ActionUser> actionUsers;
+	
 	// Constructors
 	public User() {}
 

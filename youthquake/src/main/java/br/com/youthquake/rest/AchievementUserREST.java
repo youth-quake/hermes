@@ -1,7 +1,6 @@
 package br.com.youthquake.rest;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,35 +13,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.youthquake.dto.BetDTO;
-import br.com.youthquake.model.Bet;
+import br.com.youthquake.dto.AchievementUserDTO;
+import br.com.youthquake.model.AchievementUser;
 import br.com.youthquake.responses.Response;
-import br.com.youthquake.service.BetService;
+import br.com.youthquake.service.AchievementUserService;
 
 @RestController
-public class BetREST {
-	
+public class AchievementUserREST {
 	@Autowired 
-	BetService betService;
+	AchievementUserService achievementUserService;
 	
 	@CrossOrigin
-	@PostMapping(path = "/bet/include")
-	public ResponseEntity<Response<Bet>> includeBet(@Valid @RequestBody BetDTO betDto, BindingResult result) {
+	@PostMapping(path = "/achievement/include")
+	public ResponseEntity<Response<AchievementUser>> includeAchievementUser(@Valid @RequestBody AchievementUserDTO achievementUserDTO, BindingResult result) {
 
-		Response<Bet> response = new Response<Bet>();
+		Response<AchievementUser> response = new Response<AchievementUser>();
 
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		Bet betInclude = this.betService.betInclude(betDto);
+		AchievementUser achievementUserInclude = this.achievementUserService.achievementUserInclude(achievementUserDTO);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(betDto.getIdBet())
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(achievementUserDTO.getIdAchievementUser())
 				.toUri();
 
-		response.setData(betInclude);
+		response.setData(achievementUserInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-
 }
