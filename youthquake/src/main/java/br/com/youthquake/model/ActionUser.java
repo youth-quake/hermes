@@ -15,17 +15,15 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.youthquake.dto.AchievementUserDTO;
-
 @Entity
 @Component
-@Table(name = "tbl_achievement_user")
-public class AchievementUser {
+@Table(name = "tbl_action_user")
+public class ActionUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_achievement_user")
-	private int idAchievementUser;
+	private int idActionUser;
 
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.DETACH)
@@ -34,7 +32,7 @@ public class AchievementUser {
 
 	@OneToOne
 	@JoinColumn(name = "id_achievement")
-	private AchievementSystem idAchievement;
+	private ActionSystem idActionSystem;
 
 	@Column(name = "quantity")
 	private String quantity;
@@ -42,18 +40,15 @@ public class AchievementUser {
 	@Column(name = "progress")
 	private String progress;
 
-	// Constructors
-	public AchievementUser() {
-
+	
+	public ActionUser() {}
+	
+	public int getIdActionUser() {
+		return idActionUser;
 	}
 
-	// Getters and Setters
-	public int getIdAchievementUser() {
-		return idAchievementUser;
-	}
-
-	public void setIdAchievementUser(int idAchievementUser) {
-		this.idAchievementUser = idAchievementUser;
+	public void setIdActionUser(int idActionUser) {
+		this.idActionUser = idActionUser;
 	}
 
 	public User getUser() {
@@ -64,12 +59,12 @@ public class AchievementUser {
 		this.user = user;
 	}
 
-	public AchievementSystem getIdAchievement() {
-		return idAchievement;
+	public ActionSystem getIdActionSystem() {
+		return idActionSystem;
 	}
 
-	public void setIdAchievement(AchievementSystem idAchievement) {
-		this.idAchievement = idAchievement;
+	public void setIdActionSystem(ActionSystem idActionSystem) {
+		this.idActionSystem = idActionSystem;
 	}
 
 	public String getQuantity() {
@@ -88,8 +83,5 @@ public class AchievementUser {
 		this.progress = progress;
 	}
 	
-	public void achievementUserUpdateInformation(AchievementUserDTO dto){
-		this.setQuantity(dto.getQuantity());
-	}
-
+	
 }
