@@ -39,4 +39,49 @@ public class ActionUser {
 
 	@Column(name = "progress")
 	private String progress;
+
+	
+	public ActionUser() {}
+	
+	public int getIdActionUser() {
+		return idActionUser;
+	}
+
+	public void setIdActionUser(int idActionUser) {
+		this.idActionUser = idActionUser;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public ActionSystem getIdActionSystem() {
+		return idActionSystem;
+	}
+
+	public void setIdActionSystem(ActionSystem idActionSystem) {
+		this.idActionSystem = idActionSystem;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getProgress() {
+		return progress;
+	}
+
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
+	
+	
 }
