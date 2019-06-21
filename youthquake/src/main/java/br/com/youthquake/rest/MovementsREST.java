@@ -56,6 +56,30 @@ public class MovementsREST {
 		return ResponseEntity.created(location).body(response);
 	}
 	
+	
+	@CrossOrigin
+	@PostMapping(path = "/includeinitial/{idUser}")
+	public ResponseEntity<Response<Movements>> includeMovementTotal(
+			@Valid @PathVariable long idUser, @RequestBody MovementsDTO movementsDto,
+			BindingResult result) {
+
+		Response<Movements> response = new Response<Movements>();
+
+		if (result.hasErrors()) {
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		Movements movementsInclude = this.movementsService.movementInitialInclude(idUser, movementsDto);
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(movementsDto.getIdMovement()).toUri();
+
+		response.setData(movementsInclude);
+		return ResponseEntity.created(location).body(response);
+	}
+	
+	
 	@CrossOrigin
 	@DeleteMapping("/delete/{idMovement}")
 	public ResponseEntity<String> deleteMovement(@PathVariable long idMovement) {

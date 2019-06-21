@@ -36,6 +36,13 @@ public class MovementsService {
 		return movementsRepository.save(movements);
 	}
 	
+	public Movements movementInitialInclude(long idUser, MovementsDTO dto){
+		Movements movements = new Movements();
+		movements.setUser(userRepository.findFirstByIdUser(idUser));
+		movements.setValue(dto.getValue());
+		movements.setType(dto.getType());
+		return movementsRepository.save(movements);
+	}
 	
 	public List<Movements> getMovementInfo(long idUser){
 		User u = (User)this.session.getAttribute(SESSION_USER);
