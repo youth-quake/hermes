@@ -2,8 +2,6 @@ package br.com.youthquake.dto;
 
 import java.io.Serializable;
 
-import br.com.youthquake.model.Picture;
-
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = -6888542263201514002L;
@@ -14,7 +12,7 @@ public class UserDTO implements Serializable {
 	private String password;
 	private String email;
 	private String messageStatus;
-	private Picture picture;
+	private String picture;
 	
 	
 	
@@ -66,11 +64,11 @@ public class UserDTO implements Serializable {
 		this.email = email;
 	}
 	
-	public Picture getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 	
-	public void setPicture(Picture picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	

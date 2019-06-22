@@ -3,6 +3,7 @@ package br.com.youthquake.service;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +62,18 @@ public class UserService {
 	public User updateInfoUser(long idUser, UserDTO dto) {
 		User user = userRepository.getOne(idUser);
 		user.updateUserInfos(dto);
+		return userRepository.save(user);
+	}
+
+	public User pictureInclude(UserDTO dto, long idUser) {
+		User user = userRepository.getOne(idUser);
+		user.setPicture(dto.getPicture());
+		return userRepository.save(user);
+	}
+
+	public User updatePicture(long idUser, UserDTO dto) {
+		User user = userRepository.getOne(idUser);
+		user.updatePictureUser(dto);
 		return userRepository.save(user);
 	}
 }
