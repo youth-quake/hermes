@@ -31,7 +31,7 @@ public class UserREST {
 	private UserService userService;
 
 	@CrossOrigin
-	@PostMapping(path = "/include/{idUser}")
+	@PostMapping(path = "/include")
 	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();
@@ -82,7 +82,7 @@ public class UserREST {
 	}
 	
 	@CrossOrigin
-	@PutMapping("user/updateinfo/{idUser}")
+	@PutMapping("user/updatestatus/{idUser}")
 	public ResponseEntity<User> updateInfoUser(@PathVariable long idUser, @RequestBody UserDTO dto){
 		User user = null;
 		user = userService.updateInfoUser(idUser, dto);

@@ -32,8 +32,6 @@ public class MovementsREST {
 	@Autowired
 	private MovementsService movementsService;
 
-	@Autowired
-	private UserService userService;
 
 	@CrossOrigin
 	@PostMapping(path = "/include/{idUser}")
