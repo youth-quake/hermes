@@ -48,9 +48,8 @@ public class User implements Serializable {
 	@Column(name = "status_message")
 	private String messageStatus;
 	
-	@OneToOne
-	@JoinColumn(name = "id_picture")
-	private Picture picture;
+	@Column(name = "path_picture")
+	private String picture;
 
 	@JsonProperty
 	@OneToMany(mappedBy = "user")
@@ -113,11 +112,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Picture getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Picture picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	
@@ -146,6 +145,9 @@ public class User implements Serializable {
 
 	public void updateUserInfos(UserDTO dto) {
 		this.setMessageStatus(dto.getMessageStatus());
-		//this.setPicture(dto.getPicture());
+	}
+
+	public void updatePictureUser(UserDTO dto) {
+		this.setPicture(dto.getPicture());
 	}
 }

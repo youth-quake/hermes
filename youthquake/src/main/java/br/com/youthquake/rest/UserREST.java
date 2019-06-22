@@ -31,7 +31,7 @@ public class UserREST {
 	private UserService userService;
 
 	@CrossOrigin
-	@PostMapping(path = "/include")
+	@PostMapping(path = "/user/include")
 	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();
@@ -48,6 +48,35 @@ public class UserREST {
 
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
+	}
+	
+	@CrossOrigin
+	@PostMapping(path="/include/picture/{idUser}")
+	public ResponseEntity<Response<User>> includePicture(@Valid 
+	@RequestBody UserDTO dto, @PathVariable long idUser, BindingResult result){
+		
+		Response<User> response = new Response<User>();
+		
+		if (result.hasErrors()) {
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		User userInclude = this.userService.pictureInclude(dto, idUser);
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(idUser)
+				.toUri();
+				
+		response.setData(userInclude);
+		return ResponseEntity.created(location).body(response);
+	}
+	
+	@CrossOrigin
+	@PutMapping("/update/picture/{idUser}")
+	public ResponseEntity<User> updatePicture(@PathVariable long idUser, @RequestBody UserDTO dto){
+		User user = new User();
+		user = userService.updatePicture(idUser, dto);
+		return ResponseEntity.ok().body(user);
 	}
 
 	@CrossOrigin
