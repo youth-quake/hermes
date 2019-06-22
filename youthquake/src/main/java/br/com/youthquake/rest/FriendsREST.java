@@ -29,8 +29,8 @@ public class FriendsREST {
 	private FriendsService friendService;
 	
 	@CrossOrigin
-	@PostMapping(path = "/friends/include")
-	public ResponseEntity<Response<Friends>> includeFriend(@Valid @RequestBody FriendsDTO friendsDto, BindingResult result) {
+	@PostMapping(path = "/friends/include/{idUser}")
+	public ResponseEntity<Response<Friends>> includeFriend(@Valid @RequestBody FriendsDTO friendsDto, @PathVariable long idUser, BindingResult result) {
 
 		Response<Friends> response = new Response<Friends>();
 
@@ -39,7 +39,7 @@ public class FriendsREST {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		Friends friendInclude = this.friendService.friendInclude(friendsDto);
+		Friends friendInclude = this.friendService.friendInclude(friendsDto, idUser);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(friendsDto.getIdFriends())
 				.toUri();
