@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,8 @@ public class ActionUserREST {
 	ActionUserService actionUserService;
 	
 	@CrossOrigin
-	@PostMapping(path = "/action/include")
-	public ResponseEntity<Response<ActionUser>> includeActionUser(@Valid @RequestBody ActionUserDTO actionUserDTO, BindingResult result) {
+	@PostMapping(path = "/action/include/{idUser}")
+	public ResponseEntity<Response<ActionUser>> includeActionUser(@Valid @PathVariable long idUser, @RequestBody ActionUserDTO actionUserDTO, BindingResult result) {
 
 		Response<ActionUser> response = new Response<ActionUser>();
 
@@ -34,7 +35,7 @@ public class ActionUserREST {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		ActionUser actionUserInclude = this.actionUserService.actionUserInclude(actionUserDTO);
+		ActionUser actionUserInclude = this.actionUserService.actionUserInclude(idUser, actionUserDTO);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(actionUserDTO.getIdActionUser())
 				.toUri();

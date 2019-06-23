@@ -12,8 +12,8 @@ public class ActionUserDTO implements Serializable {
 	private User user;
 	private String nameActionUser;
 	private ActionSystem idActionSystem;
-	private String quantity;
-	private String progress;
+	private int quantity;
+	private int progress;
 	
 	
 	public int getIdActionUser() {
@@ -40,16 +40,16 @@ public class ActionUserDTO implements Serializable {
 	public void setIdActionSystem(ActionSystem idActionSystem) {
 		this.idActionSystem = idActionSystem;
 	}
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public String getProgress() {
+	public int getProgress() {
 		return progress;
 	}
-	public void setProgress(String progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
 	

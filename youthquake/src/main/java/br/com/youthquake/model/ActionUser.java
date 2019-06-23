@@ -35,10 +35,10 @@ public class ActionUser {
 	private ActionSystem idActionSystem;
 
 	@Column(name = "quantity")
-	private String quantity;
+	private int quantity;
 
 	@Column(name = "progress")
-	private String progress;
+	private int progress;
 
 	
 	public ActionUser() {}
@@ -67,19 +67,19 @@ public class ActionUser {
 		this.idActionSystem = idActionSystem;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public String getProgress() {
+	public int getProgress() {
 		return progress;
 	}
 
-	public void setProgress(String progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
 	

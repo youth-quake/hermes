@@ -1,16 +1,14 @@
 package br.com.youthquake.service;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.youthquake.dto.ActionUserDTO;
+import br.com.youthquake.model.ActionSystem;
 import br.com.youthquake.model.ActionUser;
-import br.com.youthquake.model.User;
 import br.com.youthquake.repository.ActionSystemRepository;
 import br.com.youthquake.repository.ActionUserRepository;
+import br.com.youthquake.repository.UserRepository;
 
 @Service
 public class ActionUserService {
@@ -20,19 +18,27 @@ public class ActionUserService {
 	@Autowired
 	ActionUserRepository actionUserRepository;
 
+
 	@Autowired
-	HttpSession session;
+	private UserRepository userRepository;
 
-	private static String SESSION_USER = "SessionUser";
-
-	public ActionUser actionUserInclude(@Valid ActionUserDTO dto) {
-		ActionUser actionUser = new ActionUser();
-
-		User u = (User) this.session.getAttribute(SESSION_USER);
-
-		actionUser.setUser(u);
-		actionUser.setIdActionSystem(actionSystemRepository.findFirstByName(dto.getNameActionUser()));
+	public ActionUser actionUserInclude(long idUser, ActionUserDTO dto) {
+		
+		ActionSystem actionSystem =  actionSystemRepository.findFirstByName(dto.getNameActionUser());
+		ActionUser actionUser = actionUserRepository.findFirtsByUser_idUserAndIdActionSystem_idAction(idUser, actionSystem.getIdAction());
+		
+		Long quantity = actionUserRepository.getActionUserBiIdUserAndIdAction(idUser, actionSystem.getIdAction());
+		
+		if(actionUser != null && quantity > 0) {
+			actionUser.setQuantity(dto.getQuantity() + actionUser.getQuantity());
+			actionUser.setProgress((actionUser.getQuantity() * 100) / actionSystem.getNumberRequired());
+			return actionUserRepository.save(actionUser);
+		}
+		actionUser = new ActionUser();		
+		actionUser.setUser(userRepository.findFirstByIdUser(idUser));
+		actionUser.setIdActionSystem(actionSystem);
 		actionUser.setQuantity(dto.getQuantity());
+		actionUser.setProgress((dto.getQuantity() * 100) / actionSystem.getNumberRequired());
 		return actionUserRepository.save(actionUser);
 	}
 }
