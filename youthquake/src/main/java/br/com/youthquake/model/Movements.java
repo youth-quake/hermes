@@ -41,7 +41,13 @@ public class Movements implements Serializable{
 
 	@Column(name = "reference")
 	private String reference;
+	
+	@Column(name = "date_movement")
+	private String dateMovement;
 
+	@Column(name = "descript_movement")
+	private String descriptionMovement;
+	
 	// Constructors
 	public Movements() {
 	}
@@ -75,7 +81,14 @@ public class Movements implements Serializable{
 	public String getType() {
 		return type;
 	}
-
+	
+	public void setDateMovement(String dateMovement) {
+		this.dateMovement = dateMovement;
+	}
+	
+	public String getDateMovement() {
+		return dateMovement;
+	}
 	
 	public void setType(String type) {
 		this.type = type;
@@ -91,9 +104,19 @@ public class Movements implements Serializable{
 		this.reference = reference;
 	}
 	
+	public void setDescriptionMovement(String descriptionMovement) {
+		this.descriptionMovement = descriptionMovement;
+	}
+	
+	public String getDescriptionMovement() {
+		return descriptionMovement;
+	}
+	
 	public void movementUpdateInformation(MovementsDTO dto){
 		this.setReference(dto.getReference());
 		this.setType(dto.getType());
 		this.setValue(dto.getValue());
+		this.setDateMovement(dto.getDateMovement());
+		this.setDescriptionMovement(dto.getDescriptionMovement());
 	}
 }

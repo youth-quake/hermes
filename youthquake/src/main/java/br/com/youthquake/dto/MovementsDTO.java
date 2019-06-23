@@ -11,6 +11,8 @@ public class MovementsDTO implements Serializable {
 	private Double value;
 	private String type;
 	private String reference;
+	private String dateMovement;
+	private String descriptionMovement;
 
 	public MovementsDTO() {}
 
@@ -62,6 +64,22 @@ public class MovementsDTO implements Serializable {
 
 	public void setReference(String reference) {
 		this.reference = reference;
+	}
+	
+	public String getDateMovement() {
+		return dateMovement;
+	}
+	
+	public void setDateMovement(String dateMovement) {
+		this.dateMovement = dateMovement;
+	}
+	
+	public String getDescriptionMovement() {
+		return descriptionMovement;
+	}
+	
+	public void setDescriptionMovement(String descriptionMovement) {
+		this.descriptionMovement = descriptionMovement;
 	}
 	
 	@Override

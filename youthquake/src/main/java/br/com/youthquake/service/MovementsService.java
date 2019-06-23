@@ -33,6 +33,8 @@ public class MovementsService {
 		movements.setValue(dto.getValue());
 		movements.setType(dto.getType());
 		movements.setReference(dto.getReference());
+		movements.setDateMovement(dto.getDateMovement());
+		movements.setDescriptionMovement(dto.getDescriptionMovement());
 		return movementsRepository.save(movements);
 	}
 	
@@ -41,6 +43,9 @@ public class MovementsService {
 		movements.setUser(userRepository.findFirstByIdUser(idUser));
 		movements.setValue(dto.getValue());
 		movements.setType(dto.getType());
+		movements.setReference(dto.getReference());
+		movements.setDateMovement(dto.getDateMovement());
+		movements.setDescriptionMovement(dto.getDescriptionMovement());
 		return movementsRepository.save(movements);
 	}
 	
