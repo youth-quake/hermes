@@ -36,10 +36,19 @@ public class UserService {
 
 	public User userInclude(UserDTO dto) {
 		User user = new User();
+		List<User> valid = null;
+
 		user.setName(dto.getName());
 		user.setLogin(dto.getLogin());
 		user.setPassword(dto.getPassword());
 		user.setEmail(dto.getEmail());
+
+		valid = userRepository.existEmailAndLoginUser(dto.getEmail(), dto.getLogin());
+
+		if(!(valid.isEmpty())){
+			return null; 
+		}
+		
 		return userRepository.save(user);
 	}
 	

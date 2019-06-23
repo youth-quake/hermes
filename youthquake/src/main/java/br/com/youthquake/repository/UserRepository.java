@@ -17,6 +17,9 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Query("from User where idUser = ?1")
 	List<User> GetInformationUserById(long idUser);
 	
+	@Query("from User where email = ?1 OR login = ?2")
+	List<User> existEmailAndLoginUser(String email, String login);
+	
 	
 	User findFirstByIdUser(Long user);
 
