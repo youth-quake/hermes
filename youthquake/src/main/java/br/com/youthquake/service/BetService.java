@@ -33,17 +33,22 @@ public class BetService {
 	public Bet betInclude(BetDTO dto) {
 		Bet bet = new Bet();		
 		
-		User user1 = userRepository.findFirstByIdUser(dto.getIdUer1());	
-		User user2 = userRepository.findFirstByIdUser(dto.getIdUer2());
+		User user1 = userRepository.findFirstByIdUser(dto.getIdUser1());	
+		User user2 = userRepository.findFirstByIdUser(dto.getIdUser2());
 		
-		Friends friend = friendRepository.findFirstByUser1_idUserAndUser2_idUser(user1.getIdUser(), user2.getIdUser());
+		Friends friend = friendRepository.findFriendByUsers(user1.getIdUser(), user2.getIdUser());
 		
 		bet.setIdFriends(friend);
 		bet.setName(dto.getName());
 		bet.setDescription(dto.getDescription());
 		bet.setTime(dto.getTime());
 		bet.setValue(dto.getValue());
-		//bet.setResult(dto.getResult());
+		return betRepository.save(bet);
+	}
+
+	public Bet updateBet(long idBet, BetDTO dto) {
+		Bet bet = betRepository.getOne(idBet);
+		bet.updateBet(dto);
 		return betRepository.save(bet);
 	}
 }

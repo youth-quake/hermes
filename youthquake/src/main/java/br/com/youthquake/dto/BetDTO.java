@@ -7,10 +7,10 @@ public class BetDTO implements Serializable {
 
 	private static final long serialVersionUID = -6888542263201514002L;
 
-	private int idBet;
+	private Long idBet;
 	private Long idFriends;
-	private Long idUer1;
-	private Long idUer2;
+	private Long idUser1;
+	private Long idUser2;
 	private String description;
 	private double value;
 	private String name;
@@ -33,20 +33,20 @@ public class BetDTO implements Serializable {
 	
 	
 	
-	public Long getIdUer1() {
-		return idUer1;
+	public Long getIdUser1() {
+		return idUser1;
 	}
 
-	public void setIdUer1(Long idUer1) {
-		this.idUer1 = idUer1;
+	public void setIdUser1(Long idUser1) {
+		this.idUser1 = idUser1;
 	}
 
-	public Long getIdUer2() {
-		return idUer2;
+	public Long getIdUser2() {
+		return idUser2;
 	}
 
-	public void setIdUer2(Long idUer2) {
-		this.idUer2 = idUer2;
+	public void setIdUer2(Long idUser2) {
+		this.idUser2 = idUser2;
 	}
 
 	public void setDescription(String description) {
@@ -91,11 +91,11 @@ public class BetDTO implements Serializable {
 				+ ", time=" + time + ", result=" + result + "]";
 	}
 
-	public int getIdBet() {
+	public Long getIdBet() {
 		return idBet;
 	}
 
-	public void setIdBet(int idBet) {
+	public void setIdBet(Long idBet) {
 		this.idBet = idBet;
 	}
 	
