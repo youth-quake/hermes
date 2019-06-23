@@ -1,7 +1,6 @@
 package br.com.youthquake.rest;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -9,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,7 +28,8 @@ public class BetREST {
 	
 	@CrossOrigin
 	@PostMapping(path = "/bet/include")
-	public ResponseEntity<Response<Bet>> includeBet(@Valid @RequestBody BetDTO betDto, BindingResult result) {
+	public ResponseEntity<Response<Bet>> includeBet(@Valid @RequestBody BetDTO betDto, 
+			BindingResult result) {
 
 		Response<Bet> response = new Response<Bet>();
 
@@ -44,5 +46,12 @@ public class BetREST {
 		response.setData(betInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-
+	
+	@CrossOrigin
+	@PutMapping(path = "/bet/update/{idBet}")
+	public ResponseEntity<Bet> updateBetResult(@PathVariable long idBet, @RequestBody BetDTO dto){
+		Bet bet = new Bet();
+		bet = betService.updateBet(idBet, dto);
+		return ResponseEntity.ok().body(bet);
+	}
 }

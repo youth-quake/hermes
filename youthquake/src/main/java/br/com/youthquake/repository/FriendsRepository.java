@@ -20,10 +20,15 @@ public interface FriendsRepository extends JpaRepository<Friends, Long>{
 	List<Friends> findFriendsUser2(User user2);
 	
 	Friends findFirstByUser1_idUserAndUser2_idUser(Long idUser1, Long idUser2);
-
+	
+	
+	@Query("from Friends where (user1.idUser = ?1 and user2.idUser = ?2) "
+			+ "OR (user1.idUser = ?2 and user2.idUser = ?1)")
+	Friends findFriendByUsers(long idUser1, long idUser2);
+	
 	@Query("from Friends where user1.idUser = ?1 or user2.idUser = ?1")
 	List<Bet> findFirstByIdFriendsList(long idUser);
 	
-	@Query("from User where login like ?1 or name like ?1")
+	@Query("from User where login LIKE ?1||'%' or name like ?1||'%'")
 	List<User> searchFriendByName(String nameFriend);
 }

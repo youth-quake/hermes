@@ -32,31 +32,35 @@ public class UserREST {
 
 	@CrossOrigin
 	@PostMapping(path = "/user/include")
-	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
+	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();
 
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
-			return ResponseEntity.badRequest().body(response);
+			return ResponseEntity.badRequest().body("BAD REQUEST");
 		}
 
 		User userInclude = this.userService.userInclude(userDto);
+
+		if (userInclude == null) {
+			return ResponseEntity.ok().body("Login ou e-mail já existe");
+		}
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
 				.toUri();
 
 		response.setData(userInclude);
-		return ResponseEntity.created(location).body(response);
+		return ResponseEntity.created(location).body("Usuário cadastrado com sucesso!");
 	}
-	
+
 	@CrossOrigin
-	@PostMapping(path="/include/picture/{idUser}")
-	public ResponseEntity<Response<User>> includePicture(@Valid 
-	@RequestBody UserDTO dto, @PathVariable long idUser, BindingResult result){
-		
+	@PostMapping(path = "/include/picture/{idUser}")
+	public ResponseEntity<Response<User>> includePicture(@Valid @RequestBody UserDTO dto, @PathVariable long idUser,
+			BindingResult result) {
+
 		Response<User> response = new Response<User>();
-		
+
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
@@ -64,16 +68,15 @@ public class UserREST {
 
 		User userInclude = this.userService.pictureInclude(dto, idUser);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(idUser)
-				.toUri();
-				
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(idUser).toUri();
+
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-	
+
 	@CrossOrigin
 	@PutMapping("/update/picture/{idUser}")
-	public ResponseEntity<User> updatePicture(@PathVariable long idUser, @RequestBody UserDTO dto){
+	public ResponseEntity<User> updatePicture(@PathVariable long idUser, @RequestBody UserDTO dto) {
 		User user = new User();
 		user = userService.updatePicture(idUser, dto);
 		return ResponseEntity.ok().body(user);
@@ -89,35 +92,34 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<User> login(@PathVariable String login,@PathVariable String password) {
+	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password) {
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
-	
 
 	@CrossOrigin
 	@GetMapping("/profile/{idUser}")
-	public ResponseEntity<List<User>> getInformationById(@PathVariable long idUser){
+	public ResponseEntity<List<User>> getInformationById(@PathVariable long idUser) {
 		List<User> user = null;
 		user = userService.getUserInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
-	
+
 	@CrossOrigin
 	@PutMapping("/user/update/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserDTO dto){
+	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserDTO dto) {
 		User user = new User();
 		user = userService.userUpdate(id, dto);
 		return ResponseEntity.ok().body(user);
 	}
-	
+
 	@CrossOrigin
 	@PutMapping("user/updatestatus/{idUser}")
-	public ResponseEntity<User> updateInfoUser(@PathVariable long idUser, @RequestBody UserDTO dto){
+	public ResponseEntity<User> updateInfoUser(@PathVariable long idUser, @RequestBody UserDTO dto) {
 		User user = null;
 		user = userService.updateInfoUser(idUser, dto);
 		return ResponseEntity.ok().body(user);
 	}
-	
+
 	@CrossOrigin
 	@DeleteMapping("/user/delete/{idUser}")
 	public ResponseEntity<String> deleteMovement(@PathVariable long idUser) {
