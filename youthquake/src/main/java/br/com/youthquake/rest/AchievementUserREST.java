@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,8 @@ public class AchievementUserREST {
 	AchievementUserService achievementUserService;
 	
 	@CrossOrigin
-	@PostMapping(path = "/achievement/include")
-	public ResponseEntity<Response<AchievementUser>> includeAchievementUser(@Valid @RequestBody AchievementUserDTO achievementUserDTO, BindingResult result) {
+	@PostMapping(path = "/achievement/include/{idUser}")
+	public ResponseEntity<Response<AchievementUser>> includeAchievementUser(@Valid @PathVariable long idUser, @RequestBody AchievementUserDTO achievementUserDTO, BindingResult result) {
 
 		Response<AchievementUser> response = new Response<AchievementUser>();
 
@@ -34,7 +35,7 @@ public class AchievementUserREST {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		AchievementUser achievementUserInclude = this.achievementUserService.achievementUserInclude(achievementUserDTO);
+		AchievementUser achievementUserInclude = this.achievementUserService.achievementUserInclude(idUser, achievementUserDTO);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(achievementUserDTO.getIdAchievementUser())
 				.toUri();
