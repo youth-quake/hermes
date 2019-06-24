@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.youthquake.dto.AchievementUserDTO;
-
 @Entity
 @Component
 @Table(name = "tbl_achievement_user")
@@ -37,10 +35,10 @@ public class AchievementUser {
 	private AchievementSystem idAchievement;
 
 	@Column(name = "quantity")
-	private String quantity;
+	private int quantity;
 
 	@Column(name = "progress")
-	private String progress;
+	private int progress;
 
 	// Constructors
 	public AchievementUser() {
@@ -72,24 +70,19 @@ public class AchievementUser {
 		this.idAchievement = idAchievement;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public String getProgress() {
+	public int getProgress() {
 		return progress;
 	}
 
-	public void setProgress(String progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
-	
-	public void achievementUserUpdateInformation(AchievementUserDTO dto){
-		this.setQuantity(dto.getQuantity());
-	}
-
 }

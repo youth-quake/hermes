@@ -9,8 +9,8 @@ public class AchievementUserDTO implements Serializable {
 	private String nameAchievementUser;
 	private Long user;
 	private Long idAchievement;
-	private String quantity;
-	private String progress;
+	private int quantity;
+	private int progress;
 
 	public AchievementUserDTO() {
 	}
@@ -47,19 +47,19 @@ public class AchievementUserDTO implements Serializable {
 		this.idAchievement = idAchievement;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public String getProgress() {
+	public int getProgress() {
 		return progress;
 	}
 
-	public void setProgress(String progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
 
