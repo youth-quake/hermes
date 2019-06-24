@@ -42,6 +42,9 @@ public class UserService {
 		user.setLogin(dto.getLogin());
 		user.setPassword(dto.getPassword());
 		user.setEmail(dto.getEmail());
+		
+		// começar com level 0 ao cadastrar
+		user.setLevel(0);
 
 		valid = userRepository.existEmailAndLoginUser(dto.getEmail(), dto.getLogin());
 
