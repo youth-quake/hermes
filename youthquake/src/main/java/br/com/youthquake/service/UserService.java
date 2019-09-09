@@ -13,6 +13,9 @@ import br.com.youthquake.model.AchievementUser;
 import br.com.youthquake.model.User;
 import br.com.youthquake.repository.UserRepository;
 
+import java.io.UnsupportedEncodingException;
+import java.security.*;
+
 @Service
 public class UserService {
 
@@ -34,13 +37,16 @@ public class UserService {
 		return userRepository.GetInformationUserById(idUser);
 	}
 
-	public User userInclude(UserDTO dto) {
+	public User userInclude(UserDTO dto) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		User user = new User();
 		List<User> valid = null;
-
+		
+		// Criptografia para senha usando java.security
+		MessageDigest crypt = MessageDigest.getInstance("SHA-256");
+		byte passwordCrypt[] = crypt.digest(dto.getPassword().getBytes("UTF-8"));
 		user.setName(dto.getName());
 		user.setLogin(dto.getLogin());
-		user.setPassword(dto.getPassword());
+		user.setPassword(passwordCrypt.toString());
 		user.setEmail(dto.getEmail());
 		
 		// começar com level 0 ao cadastrar

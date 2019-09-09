@@ -1,6 +1,8 @@
 package br.com.youthquake.rest;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,7 +34,7 @@ public class UserREST {
 
 	@CrossOrigin
 	@PostMapping(path = "/user/include")
-	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
+	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
 		Response<User> response = new Response<User>();
 
