@@ -94,7 +94,7 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password) {
+	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 

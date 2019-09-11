@@ -71,8 +71,10 @@ public class UserService {
 		return userRepository.save(userRepo);
 	}
 
-	public User verifyUser(String login, String password) {
-		User user = userRepository.findFirstByLoginAndPassword(login, password);
+	public User verifyUser(String login, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		MessageDigest crypt = MessageDigest.getInstance("SHA-256");
+		byte passwordCrypt[] = crypt.digest(password.getBytes("UTF-8"));
+		User user = userRepository.findFirstByLoginAndPassword(login, passwordCrypt.toString());
 		session.setAttribute(SESSION_USER, user);
 		return user;
 	}
