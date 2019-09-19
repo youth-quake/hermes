@@ -2,6 +2,9 @@ package br.com.youthquake.service;
 
 import java.util.List;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -25,6 +28,8 @@ public class UserService {
 	@Autowired
 	HttpSession session;
 	
+	
+	
 	private static String SESSION_USER = "SessionUser";
 	
 
@@ -40,15 +45,10 @@ public class UserService {
 	public User userInclude(UserDTO dto) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		User user = new User();
 		List<User> valid = null;
-		
-		// Criptografia para senha usando java.security
-		MessageDigest crypt = MessageDigest.getInstance("SHA-256");
-		byte passwordCrypt[] = crypt.digest(dto.getPassword().getBytes("UTF-8"));
 		user.setName(dto.getName());
 		user.setLogin(dto.getLogin());
-		user.setPassword(passwordCrypt.toString());
+		user.setPassword(encriptPassword(dto.getPassword()));
 		user.setEmail(dto.getEmail());
-		
 		// começar com level 0 ao cadastrar
 		user.setLevel(0);
 
@@ -72,9 +72,7 @@ public class UserService {
 	}
 
 	public User verifyUser(String login, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		MessageDigest crypt = MessageDigest.getInstance("SHA-256");
-		byte passwordCrypt[] = crypt.digest(password.getBytes("UTF-8"));
-		User user = userRepository.findFirstByLoginAndPassword(login, passwordCrypt.toString());
+		User user = userRepository.findFirstByLoginAndPassword(login, encriptPassword(password));
 		session.setAttribute(SESSION_USER, user);
 		return user;
 	}
@@ -95,5 +93,51 @@ public class UserService {
 		User user = userRepository.getOne(idUser);
 		user.updatePictureUser(dto);
 		return userRepository.save(user);
+	}
+	
+	public String encriptPassword(String password) {
+		String encryptMessage = null;
+		try 
+		{
+			Cipher cipher = Cipher.getInstance("AES");
+			KeyGenerator key = KeyGenerator.getInstance("DES");
+			SecretKey keySecret = key.generateKey();
+			cipher.init(Cipher.ENCRYPT_MODE, keySecret);
+			Cipher desCipher;
+			desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+			// Criptografando
+			desCipher.init(Cipher.ENCRYPT_MODE, keySecret);
+			encryptMessage = desCipher.doFinal(password.getBytes()).toString();
+		}
+		catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+		return encryptMessage;
+	}
+	
+	public String descriptPassword(String password) {
+		String descriptMessage = null;
+		try 
+		{
+			Cipher cipher = Cipher.getInstance("AES");
+			KeyGenerator key = KeyGenerator.getInstance("DES");
+			SecretKey keySecret = key.generateKey();
+			cipher.init(Cipher.ENCRYPT_MODE, keySecret);
+			Cipher desCipher;
+			desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+			// Criptografando mensagem primeiro
+			desCipher.init(Cipher.ENCRYPT_MODE, keySecret);
+			descriptMessage = desCipher.doFinal(password.getBytes()).toString();
+			// Descriptografando mensagem 
+			desCipher.init(Cipher.DECRYPT_MODE, keySecret);
+			descriptMessage = desCipher.doFinal(password.getBytes()).toString();
+		}
+		catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+		
+		return descriptMessage;
 	}
 }
