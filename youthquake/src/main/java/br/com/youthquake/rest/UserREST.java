@@ -34,7 +34,7 @@ public class UserREST {
 
 	@CrossOrigin
 	@PostMapping(path = "/user/include")
-	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 
 		Response<User> response = new Response<User>();
 
@@ -94,7 +94,7 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password){
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 
