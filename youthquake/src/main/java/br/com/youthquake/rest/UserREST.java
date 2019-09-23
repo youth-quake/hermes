@@ -1,6 +1,8 @@
 package br.com.youthquake.rest;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -92,7 +94,7 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password) {
+	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password){
 		return ResponseEntity.ok().body(userService.verifyUser(login, password));
 	}
 
