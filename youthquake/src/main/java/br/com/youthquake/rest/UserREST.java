@@ -103,6 +103,7 @@ public class UserREST {
 	public ResponseEntity<User> refLogin(@Valid @RequestBody UserDTO dto){
 		return ResponseEntity.ok().body(userService.AuthenticUser(dto));
 	}
+	
 
 	@CrossOrigin
 	@GetMapping("/profile/{idUser}")
