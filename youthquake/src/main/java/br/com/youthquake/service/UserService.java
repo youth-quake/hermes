@@ -33,6 +33,19 @@ public class UserService {
 		User u = (User)this.session.getAttribute(SESSION_USER);
 		return userRepository.GetInformationUserById(idUser);
 	}
+	
+	public User AuthenticUser(UserDTO dto) {
+		User user = new User();
+		user = userRepository.findLoginUserExist(dto.getLogin());	
+		if(user != null) {
+			if(descriptPassword(user.getPassword()).equals(dto.getPassword())) {
+				return user;
+			}else {
+				return null;
+			}
+		}
+		return null;
+	}
 
 	public User userInclude(UserDTO dto) {
 		User user = new User();
@@ -53,16 +66,6 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	public void deleteUserById(long idUser){
-		userRepository.deleteById(idUser);
-	}
-	
-	public User userUpdate(long id, UserDTO dto) {
-		User userRepo = userRepository.getOne(id);
-		userRepo.userUpdateInformations(dto);
-		return userRepository.save(userRepo);
-	}
-
 	public User verifyUser(String login, String password){
 		User user = userRepository.findLoginUserExist(login);
 		if(user != null) {
@@ -73,6 +76,16 @@ public class UserService {
 			}
 		}
 		return null;
+	}
+	
+	public void deleteUserById(long idUser){
+		userRepository.deleteById(idUser);
+	}
+	
+	public User userUpdate(long id, UserDTO dto) {
+		User userRepo = userRepository.getOne(id);
+		userRepo.userUpdateInformations(dto);
+		return userRepository.save(userRepo);
 	}
 
 	public User updateInfoUser(long idUser, UserDTO dto) {
