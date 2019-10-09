@@ -95,7 +95,20 @@ public class UserREST {
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
 	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password){
-		return ResponseEntity.ok().body(userService.verifyUser(login, password));
+		User user = new User();
+		user = userService.verifyUser(login, password);
+		return ResponseEntity.ok().body(user);
+	}
+	
+	@CrossOrigin
+	@PostMapping("/login")
+	public ResponseEntity<User> refLogin(@Valid @RequestBody UserDTO dto){
+		User user = new User();
+		user = userService.AuthenticUser(dto);
+		if(user != null) { 
+			return ResponseEntity.ok().body(user);
+		}
+		return null;
 	}
 
 	@CrossOrigin
