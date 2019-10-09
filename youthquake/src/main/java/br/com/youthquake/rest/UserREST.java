@@ -1,6 +1,8 @@
 package br.com.youthquake.rest;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +33,33 @@ public class UserREST {
 	private UserService userService;
 
 	@CrossOrigin
-	@PostMapping(path = "/include")
-	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
+	@PostMapping(path = "/user/include")
+	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
+
+		Response<User> response = new Response<User>();
+
+		if (result.hasErrors()) {
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body("BAD REQUEST");
+		}
+
+		User userInclude = this.userService.userInclude(userDto);
+
+		if (userInclude == null) {
+			return ResponseEntity.ok().body("Login ou e-mail já existe");
+		}
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
+				.toUri();
+
+		response.setData(userInclude);
+		return ResponseEntity.created(location).body("Usuário cadastrado com sucesso!");
+	}
+
+	@CrossOrigin
+	@PostMapping(path = "/include/picture/{idUser}")
+	public ResponseEntity<Response<User>> includePicture(@Valid @RequestBody UserDTO dto, @PathVariable long idUser,
+			BindingResult result) {
 
 		Response<User> response = new Response<User>();
 
@@ -40,13 +68,20 @@ public class UserREST {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		User userInclude = this.userService.userInclude(userDto);
+		User userInclude = this.userService.pictureInclude(dto, idUser);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
-				.toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(idUser).toUri();
 
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
+	}
+
+	@CrossOrigin
+	@PutMapping("/update/picture/{idUser}")
+	public ResponseEntity<User> updatePicture(@PathVariable long idUser, @RequestBody UserDTO dto) {
+		User user = new User();
+		user = userService.updatePicture(idUser, dto);
+		return ResponseEntity.ok().body(user);
 	}
 
 	@CrossOrigin
@@ -59,25 +94,51 @@ public class UserREST {
 
 	@CrossOrigin
 	@GetMapping("/login/{login}/{password}")
-	public ResponseEntity<Boolean> login(@PathVariable String login,@PathVariable String password) {
-		return ResponseEntity.ok().body(userService.verifyUser(login, password));
+	public ResponseEntity<User> login(@PathVariable String login, @PathVariable String password){
+		User user = new User();
+		user = userService.verifyUser(login, password);
+		return ResponseEntity.ok().body(user);
 	}
 	
+	@CrossOrigin
+	@PostMapping("/login")
+	public ResponseEntity<User> refLogin(@Valid @RequestBody UserDTO dto){
+		User user = new User();
+		user = userService.AuthenticUser(dto);
+		if(user != null) { 
+			return ResponseEntity.ok().body(user);
+		}
+		return null;
+	}
 
 	@CrossOrigin
-	@GetMapping("/profile")
-	public ResponseEntity<List<User>> getInformationById(){
+	@GetMapping("/profile/{idUser}")
+	public ResponseEntity<List<User>> getInformationById(@PathVariable long idUser) {
 		List<User> user = null;
-		user = userService.getUserInfo();
+		user = userService.getUserInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
-	
+
 	@CrossOrigin
 	@PutMapping("/user/update/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserDTO dto){
+	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserDTO dto) {
 		User user = new User();
 		user = userService.userUpdate(id, dto);
 		return ResponseEntity.ok().body(user);
 	}
-	
+
+	@CrossOrigin
+	@PutMapping("user/updatestatus/{idUser}")
+	public ResponseEntity<User> updateInfoUser(@PathVariable long idUser, @RequestBody UserDTO dto) {
+		User user = null;
+		user = userService.updateInfoUser(idUser, dto);
+		return ResponseEntity.ok().body(user);
+	}
+
+	@CrossOrigin
+	@DeleteMapping("/user/delete/{idUser}")
+	public ResponseEntity<String> deleteMovement(@PathVariable long idUser) {
+		userService.deleteUserById(idUser);
+		return ResponseEntity.ok().body("Usuario deletado com sucesso!");
+	}
 }

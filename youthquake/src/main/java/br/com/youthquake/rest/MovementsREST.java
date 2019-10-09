@@ -32,12 +32,10 @@ public class MovementsREST {
 	@Autowired
 	private MovementsService movementsService;
 
-	@Autowired
-	private UserService userService;
 
 	@CrossOrigin
-	@PostMapping(path = "/include")
-	public ResponseEntity<Response<Movements>> includeMovement(@Valid @RequestBody MovementsDTO movementsDto,
+	@PostMapping(path = "/include/{idUser}")
+	public ResponseEntity<Response<Movements>> includeMovement(@Valid @PathVariable long idUser, @RequestBody MovementsDTO movementsDto,
 			BindingResult result) {
 
 		Response<Movements> response = new Response<Movements>();
@@ -47,7 +45,7 @@ public class MovementsREST {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		Movements movementsInclude = this.movementsService.movementInclude(movementsDto);
+		Movements movementsInclude = this.movementsService.movementInclude(idUser, movementsDto);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(movementsDto.getIdMovement()).toUri();
@@ -55,7 +53,32 @@ public class MovementsREST {
 		response.setData(movementsInclude);
 		return ResponseEntity.created(location).body(response);
 	}
+	
+	
+	@CrossOrigin
+	@PostMapping(path = "/includeinitial/{idUser}")
+	public ResponseEntity<Response<Movements>> includeMovementTotal(
+			@Valid @PathVariable long idUser, @RequestBody MovementsDTO movementsDto,
+			BindingResult result) {
 
+		Response<Movements> response = new Response<Movements>();
+
+		if (result.hasErrors()) {
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		Movements movementsInclude = this.movementsService.movementInitialInclude(idUser, movementsDto);
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(movementsDto.getIdMovement()).toUri();
+
+		response.setData(movementsInclude);
+		return ResponseEntity.created(location).body(response);
+	}
+	
+	
+	@CrossOrigin
 	@DeleteMapping("/delete/{idMovement}")
 	public ResponseEntity<String> deleteMovement(@PathVariable long idMovement) {
 		movementsService.deleteMovementById(idMovement);
@@ -63,18 +86,27 @@ public class MovementsREST {
 	}
 
 	@CrossOrigin
-	@GetMapping("/movements")
-	public ResponseEntity<List<Movements>> getInformationResponseEntity() {
+	@GetMapping("/get/{idUser}")
+	public ResponseEntity<List<Movements>> getInformationResponseEntity(@PathVariable long idUser) {
 		List<Movements> movements = null;
-		movements = movementsService.getMovementInfo();
+		movements = movementsService.getMovementInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(movements);
 	}
-
+	
 	@CrossOrigin
-	@PutMapping("/update/{idMovement}")
-	public ResponseEntity<Movements> updateMovement(@PathVariable long idMovement, @RequestBody MovementsDTO dto) {
+	@GetMapping("/microservice/{idUser}")
+	public ResponseEntity<List<Movements>> microserviceMovements(@PathVariable long idUser) {
+		List<Movements> movements = null;
+		movements = movementsService.getMovementMicroservice(idUser);
+		return ResponseEntity.status(HttpStatus.OK).body(movements);
+	}
+	
+	@CrossOrigin
+	@PutMapping("/update/{idMovement}/{idUser}")
+	public ResponseEntity<Movements> updateMovement(@PathVariable long idMovement, @PathVariable long idUser,
+													@RequestBody MovementsDTO dto) {
 		Movements movements = new Movements();
-		movements = movementsService.updateMovement(idMovement, dto);
+		movements = movementsService.updateMovement(idMovement, idUser, dto);
 		return ResponseEntity.ok().body(movements);
 	}
 }

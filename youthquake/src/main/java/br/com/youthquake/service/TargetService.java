@@ -2,6 +2,7 @@ package br.com.youthquake.service;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,45 +26,37 @@ public class TargetService {
 	@Autowired
 	HttpSession session;
 	
-	private static String SESSION_USER = "SessionUser";
+	private static String SESSION_USER = "SessionUser";	
 	
-	public void deleteTarget(TargetDTO dto) {
-		 targetRepository.deleteById(dto.getIdTarget());
-	HttpSession session;
-	}	
-	
-	public void deleteTarget(long idTarget) {
-		 targetRepository.deleteById(idTarget);
+	public void deleteTarget(long idTarget) { 
+		targetRepository.deleteById(idTarget);
 	}
 	
-	public List<Target> getTargetMicroservice(long idTarget){
-		return targetRepository.getTargets(idTarget);
+	public List<Target> getTargetMicroservice(long idUser){
+		return targetRepository.getTargets(idUser);
 	}
 	
-	public Target updateTarget(long id, TargetDTO dto) {
-		Target target = targetRepository.getOne(id);
-		target.targetUpdateInformations(dto);
+	public Target updateTarget(long id, long idUser, TargetDTO dto) {
+		Target target = targetRepository.getTargetByUserAndTarget(idUser, id);
+		target.setValueAccumulated(dto.getValueAccumulated());
+		target.setPercentage(dto.getPercentage());
 		return targetRepository.save(target);
 	}
 	
-	public Target targetInclude(TargetDTO dto) {
+	public Target targetInclude(long idUser, TargetDTO dto) {
 		Target target = new Target();
-		
-		User u = (User)this.session.getAttribute(SESSION_USER);
-		target.setUser(userRepository.findFirstByIdUser(u.getIdUser()));
+		target.setUser(userRepository.findFirstByIdUser(idUser));
 		target.setName(dto.getName());
 		target.setDescription(dto.getDescription());
 		target.setDtStart(dto.getDtStart());
 		target.setDtEnd(dto.getDtEnd());
 		target.setValue(dto.getValue());
-		target.setValueAccumulated(dto.getValueAccumulated());
-		target.setPercentage(dto.getPercentage());
 		
 		return targetRepository.save(target);
 	}
 
-	public List<Target> getTargetInfo() {
+	public List<Target> getTargetInfo(long idUser) {
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return targetRepository.GetInformationTargetByIdUser(u.getIdUser());
+		return targetRepository.GetInformationTargetByIdUser(idUser);
 	}
 }

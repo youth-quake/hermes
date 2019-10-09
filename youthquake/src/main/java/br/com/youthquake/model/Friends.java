@@ -1,7 +1,6 @@
 
 package br.com.youthquake.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,8 +16,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Component
@@ -32,8 +31,6 @@ public class Friends {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user_1")
-	@JsonDeserialize(as = User.class)
-	@JsonIgnore
 	private User user1;
 	
 	
@@ -41,8 +38,8 @@ public class Friends {
 	@JoinColumn(name="id_user_2")
 	private User user2;
 	
-	@OneToMany
-	private List<Bet> bets = new ArrayList<>();
+	@OneToMany(mappedBy = "idFriends")
+	private List<Bet> bets;
 
 	
 	//Constructors

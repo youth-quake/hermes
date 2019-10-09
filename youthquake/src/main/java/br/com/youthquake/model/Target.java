@@ -33,7 +33,7 @@ public class Target implements Serializable {
 	private long idTarget;
 	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "id_user")
 	private User user;
 	
@@ -53,10 +53,10 @@ public class Target implements Serializable {
 	private double value;
 	
 	@Column(name = "value_accumulated")
-	private double valueAccumulated;
+	private Double valueAccumulated;
 	
 	@Column(name = "percentage")
-	private double percentage;
+	private Double percentage;
 	
 	//Constructors
 	public Target() {
@@ -113,19 +113,19 @@ public class Target implements Serializable {
 		this.value = value;
 	}
 
-	public double getValueAccumulated() {
+	public Double getValueAccumulated() {
 		return valueAccumulated;
 	}
 
-	public void setValueAccumulated(double valueAccumulated) {
+	public void setValueAccumulated(Double valueAccumulated) {
 		this.valueAccumulated = valueAccumulated;
 	}
 
-	public double getPercentage() {
+	public Double getPercentage() {
 		return percentage;
 	}
 
-	public void setPercentage(double percentage) {
+	public void setPercentage(Double percentage) {
 		this.percentage = percentage;
 	}
 
@@ -138,11 +138,7 @@ public class Target implements Serializable {
 	}
 	
 	public void targetUpdateInformations(TargetDTO dto){
-		this.setDescription(dto.getDescription());
-		this.setDtStart(dto.getDtStart());
-		this.setDtEnd(dto.getDtEnd());
-		this.setName(dto.getName());
-		this.setValue(dto.getValue());
 		this.setValueAccumulated(dto.getValueAccumulated());
+		this.setPercentage(dto.getPercentage());
 	}
 }

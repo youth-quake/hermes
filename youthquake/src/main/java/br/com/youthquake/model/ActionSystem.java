@@ -11,13 +11,12 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(name = "tbl_achievement_system")
-public class AchievementSystem {
-
+@Table(name = "tbl_action_system")
+public class ActionSystem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_achievement")
-	private int idAchievement;
+	@Column(name = "id_action")
+	private int idAction;
 
 	@Column(name = "name")
 	private String name;
@@ -25,23 +24,14 @@ public class AchievementSystem {
 	@Column(name = "number_required")
 	private int numberRequired;
 
-	@Column(name = "description")
-	private String description;
-
-	public int getIdAchievement() {
-		return idAchievement;
+	public int getIdAction() {
+		return idAction;
 	}
 
-	public void setIdAchievement(int idAchievement) {
-		this.idAchievement = idAchievement;
+	public void setIdAction(int idAction) {
+		this.idAction = idAction;
 	}
 
-	// Constructors
-	public AchievementSystem() {
-
-	}
-
-	// Getters and Setters
 	public String getName() {
 		return name;
 	}
@@ -58,12 +48,5 @@ public class AchievementSystem {
 		this.numberRequired = numberRequired;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
 }

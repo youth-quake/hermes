@@ -31,25 +31,33 @@ public class FriendsService {
 		return friendsRepository.findAll();
 	}
 	
-	public Friends friendInclude(FriendsDTO dto) {
+	public Friends friendInclude(FriendsDTO dto, long idUser) {
 		Friends friends = new Friends();
 		
 		User user1 = (User)this.session.getAttribute(SESSION_USER);
 		//User user2 = userRepository.findFirstByIdUser(dto.getUser2());				
 		User user2 = userRepository.findFirstByName(dto.getUser2());
 		
-		friends.setUser1(userRepository.findFirstByIdUser(user1.getIdUser()));
+		friends.setUser1(userRepository.findFirstByIdUser(idUser));
 		friends.setUser2(user2);
 		
 		return friendsRepository.save(friends);
 	}
 		
-	public List<Friends> verifyFriends() {
-		User u = (User)this.session.getAttribute(SESSION_USER);
-		return friendsRepository.findFriendsUser(u);
+	public List<Friends> verifyFriends(long idUser) {
+		List<Friends> friends = null;
+		User u = (User)this.session.getAttribute(SESSION_USER);	
+		friends = friendsRepository.findFriendsUser(idUser);
+		return friends;
 	}
 	
 	public void deleteFriends(long idFriend) {
 		friendsRepository.deleteById(idFriend);
+	}
+
+	public List<User> searchFriends(String nameFriend) {
+		List<User> friends = null;
+		friends = friendsRepository.searchFriendByName(nameFriend);
+		return friends;
 	}
 }

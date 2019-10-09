@@ -10,48 +10,37 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.youthquake.dto.BetDTO;
-import br.com.youthquake.model.Bet;
+import br.com.youthquake.dto.ActionUserDTO;
+import br.com.youthquake.model.ActionUser;
 import br.com.youthquake.responses.Response;
-import br.com.youthquake.service.BetService;
+import br.com.youthquake.service.ActionUserService;
 
 @RestController
-public class BetREST {
-	
+public class ActionUserREST {
 	@Autowired 
-	BetService betService;
+	ActionUserService actionUserService;
 	
 	@CrossOrigin
-	@PostMapping(path = "/bet/include")
-	public ResponseEntity<Response<Bet>> includeBet(@Valid @RequestBody BetDTO betDto, 
-			BindingResult result) {
+	@PostMapping(path = "/action/include/{idUser}")
+	public ResponseEntity<Response<ActionUser>> includeActionUser(@Valid @PathVariable long idUser, @RequestBody ActionUserDTO actionUserDTO, BindingResult result) {
 
-		Response<Bet> response = new Response<Bet>();
+		Response<ActionUser> response = new Response<ActionUser>();
 
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		Bet betInclude = this.betService.betInclude(betDto);
+		ActionUser actionUserInclude = this.actionUserService.actionUserInclude(idUser, actionUserDTO);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(betDto.getIdBet())
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(actionUserDTO.getIdActionUser())
 				.toUri();
 
-		response.setData(betInclude);
+		response.setData(actionUserInclude);
 		return ResponseEntity.created(location).body(response);
-	}
-	
-	@CrossOrigin
-	@PutMapping(path = "/bet/update/{idBet}")
-	public ResponseEntity<Bet> updateBetResult(@PathVariable long idBet, @RequestBody BetDTO dto){
-		Bet bet = new Bet();
-		bet = betService.updateBet(idBet, dto);
-		return ResponseEntity.ok().body(bet);
 	}
 }

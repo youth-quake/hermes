@@ -29,8 +29,8 @@ public class TargetREST {
 	private TargetService targetService;
 
 	@CrossOrigin
-	@PostMapping(path = "/include")
-	public ResponseEntity<Response<Target>> includeTarget(@Valid @RequestBody TargetDTO targetDto,
+	@PostMapping(path = "/include/{idUser}")
+	public ResponseEntity<Response<Target>> includeTarget(@Valid @PathVariable long idUser, @RequestBody TargetDTO targetDto,
 			BindingResult result) {
 
 		Response<Target> response = new Response<Target>();
@@ -40,7 +40,7 @@ public class TargetREST {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		Target targetInclude = this.targetService.targetInclude(targetDto);
+		Target targetInclude = this.targetService.targetInclude(idUser, targetDto);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(targetDto.getIdTarget()).toUri();
@@ -48,14 +48,8 @@ public class TargetREST {
 		response.setData(targetInclude);
 		return ResponseEntity.created(location).body(response);
 	}
-
+	
 	@CrossOrigin
-	@DeleteMapping("/deleteTarget")
-	public ResponseEntity<Void> deleteTarget(TargetDTO dto) {
-		targetService.deleteTarget(dto);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}
-
 	@DeleteMapping("/delete/{idTarget}")
 	public ResponseEntity<String> deleteTarget(@PathVariable long idTarget) {
 		targetService.deleteTarget(idTarget);
@@ -63,26 +57,27 @@ public class TargetREST {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/targetuser")
-	public ResponseEntity<List<Target>> responseEntity(){
+	@GetMapping("/get/{idUser}")
+	public ResponseEntity<List<Target>> responseEntity(@PathVariable long idUser){
 		List<Target> target = null;
-		target = targetService.getTargetInfo();
+		target = targetService.getTargetInfo(idUser);
 		return ResponseEntity.status(HttpStatus.OK).body(target);
 	}
 
 	@CrossOrigin
-	@GetMapping("/microservice/{idTarget}")
-	public List<Target> getTargetToMicroservice(@PathVariable long idTarget) {
+	@GetMapping("/microservice/{idUser}")
+	public List<Target> getTargetToMicroservice(@PathVariable long idUser) {
 		List<Target> target = null;
-		target = targetService.getTargetMicroservice(idTarget);
+		target = targetService.getTargetMicroservice(idUser);
 		return target;
 	}
 
 	@CrossOrigin
-	@PutMapping("/update/{idTarget}")
-	public ResponseEntity<Target> updateTarget(@PathVariable long idTarget, @RequestBody TargetDTO dto) {
+	@PutMapping("/update/{idTarget}/{idUser}")
+	public ResponseEntity<Target> updateTarget(@PathVariable long idTarget, @PathVariable long idUser,
+											   @RequestBody TargetDTO dto) {
 		Target target = new Target();
-		target = targetService.updateTarget(idTarget, dto);
+		target = targetService.updateTarget(idTarget, idUser, dto);
 		return ResponseEntity.ok().body(target);
 	}
 }

@@ -27,32 +27,45 @@ public class MovementsService {
 	
 	private static String SESSION_USER = "SessionUser";
 	
-	public Movements movementInclude(MovementsDTO dto) {
+	public Movements movementInclude(long idUser, MovementsDTO dto) {
 		Movements movements = new Movements();
-
-		User u = (User)this.session.getAttribute(SESSION_USER);
-		movements.setUser(userRepository.findFirstByIdUser(u.getIdUser()));
+		movements.setUser(userRepository.findFirstByIdUser(idUser));
 		movements.setValue(dto.getValue());
 		movements.setType(dto.getType());
 		movements.setReference(dto.getReference());
+		movements.setDateMovement(dto.getDateMovement());
+		movements.setDescriptionMovement(dto.getDescriptionMovement());
 		return movementsRepository.save(movements);
 	}
 	
+	public Movements movementInitialInclude(long idUser, MovementsDTO dto){
+		Movements movements = new Movements();
+		movements.setUser(userRepository.findFirstByIdUser(idUser));
+		movements.setValue(dto.getValue());
+		movements.setType(dto.getType());
+		movements.setReference(dto.getReference());
+		movements.setDateMovement(dto.getDateMovement());
+		movements.setDescriptionMovement(dto.getDescriptionMovement());
+		return movementsRepository.save(movements);
+	}
 	
-	public List<Movements> getMovementInfo(){
+	public List<Movements> getMovementInfo(long idUser){
 		User u = (User)this.session.getAttribute(SESSION_USER);
-		return movementsRepository.GetInformationMovementsByIdUser(u.getIdUser());
+		return movementsRepository.GetInformationMovementsByIdUser(idUser);
 	}
 
 	public void deleteMovementById(long idMovement) {
 		movementsRepository.deleteById(idMovement);
 	}
 
-
-	public Movements updateMovement(long idMovement, MovementsDTO dto) {
-		Movements movement = movementsRepository.getOne(idMovement);
+	public Movements updateMovement(long idMovement, long idUser, MovementsDTO dto) {
+		Movements movement = movementsRepository.getMovementsByIdAndUser(idUser, idMovement);
 		movement.movementUpdateInformation(dto);
 		return movementsRepository.save(movement);
 	}
 
+
+	public List<Movements> getMovementMicroservice(long idUser) {
+		return movementsRepository.getMovementsMicroservice(idUser);
+	}
 }

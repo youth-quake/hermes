@@ -1,5 +1,6 @@
 package br.com.youthquake.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,10 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.youthquake.dto.BetDTO;
+
 @Entity
 @Component
 @Table(name = "tbl_bet")
@@ -19,10 +24,11 @@ public class Bet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_bet")
-	private int idBet;
+	private Long idBet;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_friends")
+	@JsonIgnore
 	private Friends idFriends;
 	
 	@Column(name = "description")
@@ -47,18 +53,15 @@ public class Bet {
 	}
 
 	//Getters and Setters
-	public int getIdBet() {
+	public Long getIdBet() {
 		return idBet;
 	}
 
-	public void setIdBet(int idBet) {
+	public void setIdBet(Long idBet) {
 		this.idBet = idBet;
 	}
-
-	public Friends getIdFriends() {
-		return idFriends;
-	}
-
+	
+	
 	public void setIdFriends(Friends idFriends) {
 		this.idFriends = idFriends;
 	}
@@ -102,6 +105,8 @@ public class Bet {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
-	
+
+	public void updateBet(BetDTO dto) {
+		this.setResult(dto.getResult());
+	}
 }

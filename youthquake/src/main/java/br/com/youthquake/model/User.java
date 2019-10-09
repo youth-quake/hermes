@@ -1,7 +1,6 @@
 package br.com.youthquake.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.youthquake.dto.UserDTO;
 
@@ -27,7 +25,7 @@ import br.com.youthquake.dto.UserDTO;
 @Component
 @Table(name = "tbl_user")
 public class User implements Serializable {
-	
+
 	private static final long serialVersionUID = -6888542263201514002L;
 
 	@Id
@@ -37,19 +35,24 @@ public class User implements Serializable {
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "login")
 	private String login;
-		
+
 	@Column(name = "password")
 	private String password;
 
 	@Column(name = "email")
 	private String email;
 
-	@OneToOne
-	@JoinColumn(name = "id_picture")
-	private Picture picture;
+	@Column(name = "status_message")
+	private String messageStatus;
+
+	@Column(name = "path_picture")
+	private String picture;
+
+	@Column(name = "level")
+	private int level;
 
 	@JsonProperty
 	@OneToMany(mappedBy = "user")
@@ -57,18 +60,23 @@ public class User implements Serializable {
 
 	@JsonProperty
 	@OneToMany(mappedBy = "user")
-	private List<Target> target = new ArrayList<>();
-	
+	private List<Target> target;
+
 	@JsonIgnore
 	@OneToMany
 	private List<Friends> friends;
 
 	@JsonProperty
-	@ManyToMany(mappedBy = "users")
-	private List<AchievementUser> AchievementUsers;
+	@OneToMany(mappedBy = "user")
+	private List<AchievementUser> achievementUsers;
+
+	@JsonProperty
+	@OneToMany(mappedBy = "user")
+	private List<ActionUser> actionUsers;
 
 	// Constructors
-	public User() {}
+	public User() {
+	}
 
 	public User(String login, String password, String email) {
 		this.login = login;
@@ -76,8 +84,17 @@ public class User implements Serializable {
 		this.email = email;
 	}
 	// Getters and Setters
+
 	public long getIdUser() {
 		return idUser;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public void setIdUser(long idUser) {
@@ -108,27 +125,42 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Picture getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Picture picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	public void setMessageStatus(String messageStatus) {
+		this.messageStatus = messageStatus;
+	}
+
+	public String getMessageStatus() {
+		return messageStatus;
+	}
+
 	public void userUpdateInformations(UserDTO dto) {
+		this.setName(dto.getName());
 		this.setLogin(dto.getLogin());
-		this.setPassword(dto.getPassword());
 		this.setEmail(dto.getEmail());
+		this.setPassword(dto.getPassword());
+	}
+
+	public void updateUserInfos(UserDTO dto) {
+		this.setMessageStatus(dto.getMessageStatus());
+	}
+
+	public void updatePictureUser(UserDTO dto) {
 		this.setPicture(dto.getPicture());
 	}
 }
