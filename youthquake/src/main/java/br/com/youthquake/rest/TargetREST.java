@@ -32,19 +32,14 @@ public class TargetREST {
 	@PostMapping(path = "/include/{idUser}")
 	public ResponseEntity<Response<Target>> includeTarget(@Valid @PathVariable long idUser, @RequestBody TargetDTO targetDto,
 			BindingResult result) {
-
 		Response<Target> response = new Response<Target>();
-
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-
 		Target targetInclude = this.targetService.targetInclude(idUser, targetDto);
-
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(targetDto.getIdTarget()).toUri();
-
 		response.setData(targetInclude);
 		return ResponseEntity.created(location).body(response);
 	}

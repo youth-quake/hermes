@@ -34,44 +34,33 @@ public class UserREST {
 
 	@CrossOrigin
 	@PostMapping(path = "/user/include")
-	public ResponseEntity<String> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
-
+	public ResponseEntity<Response<User>> includeUser(@Valid @RequestBody UserDTO userDto, BindingResult result) {
 		Response<User> response = new Response<User>();
-
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
-			return ResponseEntity.badRequest().body("BAD REQUEST");
+			return ResponseEntity.badRequest().body(response);
 		}
-
 		User userInclude = this.userService.userInclude(userDto);
-
 		if (userInclude == null) {
-			return ResponseEntity.ok().body("Login ou e-mail já existe");
+			return ResponseEntity.badRequest().body(null);
 		}
-
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
 				.toUri();
-
-		response.setData(userInclude);
-		return ResponseEntity.created(location).body("Usuário cadastrado com sucesso!");
+		response.setData(userInclude);	
+		return ResponseEntity.created(location).body(response);
 	}
 
 	@CrossOrigin
 	@PostMapping(path = "/include/picture/{idUser}")
 	public ResponseEntity<Response<User>> includePicture(@Valid @RequestBody UserDTO dto, @PathVariable long idUser,
 			BindingResult result) {
-
 		Response<User> response = new Response<User>();
-
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-
 		User userInclude = this.userService.pictureInclude(dto, idUser);
-
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(idUser).toUri();
-
 		response.setData(userInclude);
 		return ResponseEntity.created(location).body(response);
 	}
