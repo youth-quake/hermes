@@ -155,4 +155,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <jar destfile="target/HermesQuake.jar"
+    basedir="."
+    includes="**/reports/*.class"/>
 </project>
