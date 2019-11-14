@@ -27,19 +27,14 @@ public class ActionUserREST {
 	@CrossOrigin
 	@PostMapping(path = "/action/include/{idUser}")
 	public ResponseEntity<Response<ActionUser>> includeActionUser(@Valid @PathVariable long idUser, @RequestBody ActionUserDTO actionUserDTO, BindingResult result) {
-
 		Response<ActionUser> response = new Response<ActionUser>();
-
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-
 		ActionUser actionUserInclude = this.actionUserService.actionUserInclude(idUser, actionUserDTO);
-
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(actionUserDTO.getIdActionUser())
 				.toUri();
-
 		response.setData(actionUserInclude);
 		return ResponseEntity.created(location).body(response);
 	}
