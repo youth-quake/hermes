@@ -27,19 +27,14 @@ public class AchievementUserREST {
 	@CrossOrigin
 	@PostMapping(path = "/achievement/include/{idUser}")
 	public ResponseEntity<Response<AchievementUser>> includeAchievementUser(@Valid @PathVariable long idUser, @RequestBody AchievementUserDTO achievementUserDTO, BindingResult result) {
-
 		Response<AchievementUser> response = new Response<AchievementUser>();
-
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-
 		AchievementUser achievementUserInclude = this.achievementUserService.achievementUserInclude(idUser, achievementUserDTO);
-
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(achievementUserDTO.getIdAchievementUser())
 				.toUri();
-
 		response.setData(achievementUserInclude);
 		return ResponseEntity.created(location).body(response);
 	}
