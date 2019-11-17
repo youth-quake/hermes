@@ -4,7 +4,6 @@ import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.youthquake.dto.UserDTO;
@@ -17,20 +16,11 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	HttpSession session;
-	
-	
-	
-	private static String SESSION_USER = "SessionUser";
-	
-
 	public List<User> getAll() {
 		return userRepository.findAll();
 	}
 	
 	public List<User> getUserInfo(long idUser){
-		User u = (User)this.session.getAttribute(SESSION_USER);
 		return userRepository.GetInformationUserById(idUser);
 	}
 	
