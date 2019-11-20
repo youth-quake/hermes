@@ -23,7 +23,6 @@ import br.com.youthquake.dto.MovementsDTO;
 import br.com.youthquake.model.Movements;
 import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.MovementsService;
-import br.com.youthquake.service.UserService;
 
 @RestController
 @RequestMapping("/movements")

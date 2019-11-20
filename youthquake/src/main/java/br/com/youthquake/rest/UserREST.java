@@ -1,8 +1,6 @@
 package br.com.youthquake.rest;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.validation.Valid;

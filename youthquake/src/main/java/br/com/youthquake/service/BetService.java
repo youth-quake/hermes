@@ -1,12 +1,6 @@
 package br.com.youthquake.service;
-
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.youthquake.dto.BetDTO;
 import br.com.youthquake.model.Bet;
 import br.com.youthquake.model.Friends;
@@ -25,10 +19,6 @@ public class BetService {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
-	HttpSession session;
-	private static String SESSION_USER = "SessionUser";
 	
 	public Bet betInclude(BetDTO dto) {
 		Bet bet = new Bet();		

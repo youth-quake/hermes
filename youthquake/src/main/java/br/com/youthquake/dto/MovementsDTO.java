@@ -1,6 +1,5 @@
 package br.com.youthquake.dto;
-import java.io.Serializable;	
-import br.com.youthquake.model.User;
+import java.io.Serializable;
 
 public class MovementsDTO implements Serializable {
 
