@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.youthquake.dto.TargetDTO;
 import br.com.youthquake.model.Target;
-import br.com.youthquake.model.User;
 import br.com.youthquake.responses.Response;
 import br.com.youthquake.service.TargetService;
 
