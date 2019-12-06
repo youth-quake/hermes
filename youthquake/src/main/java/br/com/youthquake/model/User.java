@@ -53,6 +53,12 @@ public class User implements Serializable {
 
 	@Column(name = "level")
 	private int level;
+	
+	@Column(name="first_access")
+	private boolean isFirstAccess;
+	
+	@Column(name="score")
+	private int score;
 
 	@JsonProperty
 	@OneToMany(mappedBy = "user")
@@ -147,6 +153,22 @@ public class User implements Serializable {
 
 	public String getMessageStatus() {
 		return messageStatus;
+	}
+	
+	public boolean isFirstAccess() {
+		return isFirstAccess;
+	}
+
+	public void setFirstAccess(boolean isFirstAccess) {
+		this.isFirstAccess = isFirstAccess;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	public void userUpdateInformations(UserDTO dto) {
