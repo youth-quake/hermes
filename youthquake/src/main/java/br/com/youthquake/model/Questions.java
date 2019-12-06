@@ -44,10 +44,10 @@ public class Questions {
 	
 	@JsonProperty
 	@Column(name="correct_awnser")
-	private int rightAnswer;
+	private String rightAnswer;
 	
 	public Questions(String question, String firstOption, String secondOption, String thirdOption,
-					String fourthOption, int rightAnswer ) {
+					String fourthOption, String rightAnswer ) {
 		this.question = question;
 		this.firstOption = firstOption; 
 		this.secondOption = secondOption;
@@ -104,11 +104,11 @@ public class Questions {
 		this.fourthOption = fourthOption;
 	}
 
-	public int getRightAnswer() {
+	public String getRightAnswer() {
 		return rightAnswer;
 	}
 
-	public void setRightAnswer(int rightAnswer) {
+	public void setRightAnswer(String rightAnswer) {
 		this.rightAnswer = rightAnswer;
 	}
 }
