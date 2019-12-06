@@ -185,4 +185,8 @@ public class User implements Serializable {
 	public void updatePictureUser(UserDTO dto) {
 		this.setPicture(dto.getPicture());
 	}
+	
+	public void updateScoreUser(UserDTO dto) {
+		this.setScore(dto.getScore());
+	}
 }

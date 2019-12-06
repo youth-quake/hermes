@@ -13,9 +13,26 @@ public class UserDTO implements Serializable {
 	private String email;
 	private String messageStatus;
 	private String picture;
+	private boolean isFirstAccess;
+	private int score; 
 	
 	
-	
+	public boolean isFirstAccess() {
+		return isFirstAccess;
+	}
+
+	public void setFirstAccess(boolean isFirstAccess) {
+		this.isFirstAccess = isFirstAccess;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	public UserDTO() {}
 	
 	public UserDTO(String login, String password) {
@@ -83,7 +100,7 @@ public class UserDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "UserDTO [id=" + id + ", name=" + name + ", login=" + login + ", password=" + password + ", email="
-				+ email + ", messageStatus=" + messageStatus + ", picture=" + picture + "]";
+				+ email + ", messageStatus=" + messageStatus + ", picture=" + picture + ", score="+ score +", isFirstAccess="+ isFirstAccess +" ]";
 	}
 }
 	
