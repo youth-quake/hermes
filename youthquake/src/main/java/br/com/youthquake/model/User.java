@@ -187,6 +187,6 @@ public class User implements Serializable {
 	}
 	
 	public void updateScoreUser(UserDTO dto) {
-		this.setScore(dto.getScore());
+		this.setScore(this.getScore() + dto.getScore());
 	}
 }
