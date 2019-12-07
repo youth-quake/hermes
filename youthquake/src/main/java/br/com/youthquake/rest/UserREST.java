@@ -107,10 +107,10 @@ public class UserREST {
 	}
 
 	@CrossOrigin
-	@PutMapping("/user/update/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserDTO dto) {
+	@PutMapping("/user/update")
+	public ResponseEntity<User> updateUser(@RequestBody UserDTO dto) {
 		User user = new User();
-		user = userService.userUpdate(id, dto);
+		user = userService.userUpdate(dto);
 		return ResponseEntity.ok().body(user);
 	}
 

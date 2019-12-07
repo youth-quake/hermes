@@ -72,10 +72,12 @@ public class UserService {
 		userRepository.deleteById(idUser);
 	}
 	
-	public User userUpdate(long id, UserDTO dto) {
-		User userRepo = userRepository.getOne(id);
-		userRepo.userUpdateInformations(dto);
-		return userRepository.save(userRepo);
+	public User userUpdate(UserDTO dto) {
+		User user = userRepository.getOne(dto.getId());
+		if(user != null)
+			user.userUpdateInformations(dto);
+		
+		return userRepository.save(user);
 	}
 
 	public User updateInfoUser(long idUser, UserDTO dto) {

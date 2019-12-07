@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.youthquake.dto.UserDTO;
+import br.com.youthquake.service.UserService;
 
 @Entity
 @Component
@@ -172,10 +173,19 @@ public class User implements Serializable {
 	}
 
 	public void userUpdateInformations(UserDTO dto) {
-		this.setName(dto.getName());
-		this.setLogin(dto.getLogin());
-		this.setEmail(dto.getEmail());
-		this.setPassword(dto.getPassword());
+		this.setName(dto.getName() == null ? this.getName() 
+						: dto.getName());
+		this.setLogin(dto.getLogin() == null ? this.getLogin() 
+						: dto.getLogin());
+		this.setEmail(dto.getEmail() == null ? this.getEmail() 
+						: dto.getEmail());
+		this.setPassword(dto.getPassword() == null ? this.getPassword()  
+						: UserService.encriptPassword(dto.getPassword()));
+		this.setPicture(dto.getPicture() == null ? this.getPicture() 
+						: dto.getPicture());
+		this.setFirstAccess(dto.isFirstAccess());
+		this.setScore(this.getScore() + (dto.getScore() != 0 ? dto.getScore() 
+						: 0));
 	}
 
 	public void updateUserInfos(UserDTO dto) {
