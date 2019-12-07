@@ -107,7 +107,7 @@ public class UserREST {
 	}
 
 	@CrossOrigin
-	@PutMapping("/user/update")
+	@PostMapping("/user/update")
 	public ResponseEntity<User> updateUser(@RequestBody UserDTO dto) {
 		User user = new User();
 		user = userService.userUpdate(dto);
