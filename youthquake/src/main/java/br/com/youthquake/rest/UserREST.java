@@ -42,7 +42,7 @@ public class UserREST {
 		if (userInclude == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getIdUser())
 				.toUri();
 		response.setData(userInclude);	
 		return ResponseEntity.created(location).body(response);

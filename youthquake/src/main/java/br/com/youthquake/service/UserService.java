@@ -73,7 +73,7 @@ public class UserService {
 	}
 	
 	public User userUpdate(UserDTO dto) {
-		User user = userRepository.getOne(dto.getId());
+		User user = userRepository.getOne(dto.getIdUser());
 		if(user != null)
 			user.userUpdateInformations(dto);
 		
