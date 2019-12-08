@@ -186,6 +186,8 @@ public class User implements Serializable {
 		this.setFirstAccess(dto.isFirstAccess());
 		this.setScore(this.getScore() + (dto.getScore() != 0 ? dto.getScore() 
 						: 0));
+		this.setMessageStatus(dto.getMessageStatus() == null ? this.getMessageStatus()
+						: dto.getMessageStatus());
 	}
 
 	public void updateUserInfos(UserDTO dto) {

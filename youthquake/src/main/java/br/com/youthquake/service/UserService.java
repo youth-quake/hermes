@@ -46,7 +46,7 @@ public class UserService {
 		user.setEmail(dto.getEmail());
 		// começar com level 0 ao cadastrar
 		user.setLevel(0);
-
+		user.setScore(0);
 		valid = userRepository.existEmailAndLoginUser(dto.getEmail(), dto.getLogin());
 
 		if(!(valid.isEmpty())){
