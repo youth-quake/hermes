@@ -47,6 +47,8 @@ public class UserService {
 		// começar com level 0 ao cadastrar
 		user.setLevel(0);
 		user.setScore(0);
+		// imagem padrão
+		user.setPicture("2131361830");
 		valid = userRepository.existEmailAndLoginUser(dto.getEmail(), dto.getLogin());
 
 		if(!(valid.isEmpty())){
