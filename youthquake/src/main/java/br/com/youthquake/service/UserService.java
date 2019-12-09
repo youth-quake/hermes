@@ -49,6 +49,7 @@ public class UserService {
 		user.setScore(0);
 		// imagem padrão
 		user.setPicture("2131361830");
+		user.setFirstAccess(true);
 		valid = userRepository.existEmailAndLoginUser(dto.getEmail(), dto.getLogin());
 
 		if(!(valid.isEmpty())){
